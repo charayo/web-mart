@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web-mart Nigeria</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -46,7 +46,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Flash Sales</a>
@@ -78,6 +78,9 @@
                         <button class="btn btn-outline-light" type="submit">Search</button>
                     </form>
                 </div>
+                <div><a href="#"><i class="material-icons text-white ml-1" aria-hidden="true"
+                            id="cartIcon">shopping_cart </i></a><sup id="cartUpdate"
+                        class="badge badge-light badge-pill  ">0</sup></div>
 
 
             </div>
@@ -110,17 +113,18 @@
             </ul>
         </nav>
     </header>
+    <div id="cartJsTarg">
+        <h3 class="text-center">YOUR ORDER - <span class="" id="cartVal"></span></h3>
+        <hr>
+    </div>
 
-
-
-
-    <footer class="fixed-bottom container-fluid bg-dark">
+    <footer class="container-fluid bg-dark">
         <div class="row bg-black pt-3 pb-2">
-            <div class="col-3">
-                <a class="navbar-brakkknd mytxt font-weight-bolder h2 logotxt" href="#" >WEB-MART<i
+            <div class="col-md-3">
+                <a class="navbar-brakkknd mytxt font-weight-bolder h2 logotxt" href="#">WEB-MART<i
                         class="material-icons text-white ml-1" aria-hidden="true">shopping_cart</i></a>
             </div>
-            <div class="col-7">
+            <div class="col-md-7">
                 <h6 class="text-white">New to WEB-MART? </h6>
                 <p class="text-white" style="margin-top: -10px;">Subscribe to our Newsletter</p>
                 <form class="form-inline">
@@ -129,7 +133,7 @@
                 </form>
 
             </div>
-            <div class="col-2">
+            <div class="col-md-2">
                 <h6 class="text-white"> JOIN US ON</h6>
                 <span class="mr-4"><a href="#"><i class="fab fa-facebook-f h4 text-white"></i></a></span>
                 <span class="mr-4"><a href="#"><i class="fab fa-twitter h4 text-white"></i></a></span>
@@ -139,7 +143,7 @@
         </div>
         <hr>
         <div class="row text-center bg-dark  text-white ml-3 mr-3">
-            <div class="col-3 text-left foot-links">
+            <div class="col-md-3 text-left foot-links">
                 <h4 class="text-white">Need Help?</h4>
                 <a href="">
                     <p>Help Center</p>
@@ -160,7 +164,7 @@
                     <p>Report a Product</p>
                 </a>
             </div>
-            <div class="col-3 text-left foot-links">
+            <div class="col-md-3 text-left foot-links">
                 <h4 class="text-white">Policy</h4>
                 <a href="">
                     <p>Return Policy</p>
@@ -172,7 +176,7 @@
                     <p>Privacy Policy</p>
                 </a>
             </div>
-            <div class="col-3 text-left foot-links">
+            <div class="col-md-3 text-left foot-links">
                 <h4 class="text-white">About Web-mart</h4>
                 <a href="">
                     <p>About Us</p>
@@ -181,7 +185,7 @@
                     <p>Contact Us</p>
                 </a>
             </div>
-            <div class="col-3 text-left foot-links">
+            <div class="col-md-3 text-left foot-links">
                 <h4 class="text-white">Buying on WEB-MART</h4>
                 <a href="">
                     <p>How to Order</p>
@@ -200,17 +204,70 @@
                 </a>
             </div>
         </div>
-        <div class="container text-center text-white">
-            <span href="" class=""><a class="fa fa-toggle-off  h5 mr-1 text-white" style="text-decoration: none;"
-                    href="#" id="toggleTim"></a></span><span class="font-weight-bold">Switch to
+        <!-- <div class="container text-center text-white">
+            <span href="" class=""><a class="fa fa-toggle-off  h5 mr-1 text-white d-none" style="text-decoration: none;"
+                     id="toggleTim" ></a></span><span class="font-weight-bold">Switch to
                 Night</span>
+        </div> -->
+        <div class="container text-center text-white">
+            <span href="" class=""><a class="btn btn-dark border rounded-circle p-2 mr-1 "
+                    style="text-decoration: none;" id="toggleTim"></a></span><span class="font-weight-bold">Toggle
+                Night Mode</span>
         </div>
 
     </footer>
 
+    <script>
+        (function ($) {
+            let cart = [];
 
-
-    <script src="main.js"></script>
+            if (localStorage.getItem('cartItems')) {
+                cart = JSON.parse(localStorage.getItem('cartItems'));
+                document.getElementById("cartVal").innerHTML = `${cart.length} ITEMS`;
+                for (let index = 0; index < cart.length; index++) {
+                    document.getElementById("cartJsTarg").innerHTML += (`
+                    <div class="container card mt-2 mb-3 shadow-lg w-50" id="cartCard${index}">
+                        <div class="">
+                            <div class="row mb-2 text-center">
+                                <div class="col-md-4 text-cen" id="imageTarget">
+                                    <img id="imageId" class="w-75 mt-4" src="${cart[index].itemImgSrc}" alt="Nike-slides">
+                                </div>
+                                <div class="col-md-8" id="descrTarget">
+                                    <div class="pt-4">
+                                        <h4 class="">${cart[index].itemName}</h4>
+                                        <p class="">${cart[index].itemPrice}</p>
+                                        <hr>
+                                        <input type="button" value="Remove from Cart" class="btn btn-danger removeFromCart" id="removeFromCart">
+                                    </div>                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `)
+                }
+            }
+            console.log(cart);
+            let rmvBtn = document.querySelectorAll(".removeFromCart");
+            rmvBtn.forEach((element,index) => {
+                
+                element.addEventListener('click', () => {
+                    console.log(index); 
+                    cart.splice(index,1);
+                    localStorage.setItem("cartItems", JSON.stringify(cart));
+                    $(`#cartCard${index}`).remove();
+                     
+                    cartNum = localStorage.getItem('cartCount');
+                    localStorage.removeItem('cartCount')
+                    cartNum--;
+                    document.getElementById("cartVal").innerHTML = `${cartNum} ITEMS`; 
+                    localStorage.setItem("cartCount", cartNum);
+                    $("#cartUpdate").html(cartNum);
+                    console.log(cart);
+                })
+            });
+        })(jQuery);
+    </script>
+    <script src="/main.js"></script>
 </body>
 
 </html>

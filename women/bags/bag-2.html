@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web-mart Nigeria</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -78,7 +78,8 @@
                         <button class="btn btn-outline-light" type="submit">Search</button>
                     </form>
                 </div>
-
+                <div><a href="/cart.html"><i class="material-icons text-white ml-1" aria-hidden="true">shopping_cart </i></a><sup
+                    id="cartUpdate" class="badge badge-light badge-pill  ">0</sup></div>
 
             </div>
         </nav>
@@ -110,17 +111,53 @@
             </ul>
         </nav>
     </header>
+    <div class="nav" id="path-link">
+        <span class="mr-3"><a class="text-black path-link" href="/index.html" >Home</a><span class="ml-1 myIcon">>></span></span>
+        <span class="mr-3"> <a class="text-black path-link" href="">Women</a><span class="ml-1 nyIcon">>></span></span>
+        <span class="mr-3"> <a class="text-black path-link" href="">Bags</a><span class="ml-1 myIcon">>></span></span>
+        <span class="text-grey">Glossy Bag JDI 343882-401</span>
+    </div>
+    <div class="pt-4 mb-2 pb-3 card w-100 container">
+        <div class="row">
+            <div class="col-4 text-center bordker">
+                <img id="imageId" class="w-75 mt-4" src="/images/bag2.jpg" alt="Glossy Bag">
+            </div>
+            <div class="col-8">
+                <h4 id="itemName">Glossy Bag JDI 343882-401</h4>
+                <span class="d-block">Brand: Designer</span>
+                <span><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i
+                        class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i
+                        class="material-icons text-grey">star</i></span><span class="d-block">(4 ratings)</span>
+                <hr>
+                <h1 id="itemPrice">₦9,999</h1>
+                <span><del>₦17,000</del></span><span class="bg-warning ml-1">-42%</span>
+                <hr>
+                <span>SELECT VARIATION</span>
+                <div class="mt-2">
+                    <span class=" btn border">White</span>
+                    <span class=" btn border">Purple</span>
+                    <span class=" btn border">Pink</span>
+                    <span class=" btn border">Blue</span>
+                </div>
+                <div class="text-cente">
+                    <input type="button" value="ADD TO CART" id="addToCart" class="btn mybg mt-2 form-control  text-white ">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card container w-100 mb-4">
+        <h4>Product details</h4>
+        <p class="">"Good bags bag good wishes" this adorable looking leather bag with straps fits for any of your outing.</p>
+    </div>
 
 
-
-
-    <footer class="fixed-bottom container-fluid bg-dark">
+    <footer class="container-fluid bg-dark">
         <div class="row bg-black pt-3 pb-2">
-            <div class="col-3">
-                <a class="navbar-brakkknd mytxt font-weight-bolder h2 logotxt" href="#" >WEB-MART<i
+            <div class="col-md-3">
+                <a class="navbar-brakkknd mytxt font-weight-bolder h2 logotxt" href="#">WEB-MART<i
                         class="material-icons text-white ml-1" aria-hidden="true">shopping_cart</i></a>
             </div>
-            <div class="col-7">
+            <div class="col-md-7">
                 <h6 class="text-white">New to WEB-MART? </h6>
                 <p class="text-white" style="margin-top: -10px;">Subscribe to our Newsletter</p>
                 <form class="form-inline">
@@ -129,7 +166,7 @@
                 </form>
 
             </div>
-            <div class="col-2">
+            <div class="col-md-2">
                 <h6 class="text-white"> JOIN US ON</h6>
                 <span class="mr-4"><a href="#"><i class="fab fa-facebook-f h4 text-white"></i></a></span>
                 <span class="mr-4"><a href="#"><i class="fab fa-twitter h4 text-white"></i></a></span>
@@ -139,7 +176,7 @@
         </div>
         <hr>
         <div class="row text-center bg-dark  text-white ml-3 mr-3">
-            <div class="col-3 text-left foot-links">
+            <div class="col-md-3 text-left foot-links">
                 <h4 class="text-white">Need Help?</h4>
                 <a href="">
                     <p>Help Center</p>
@@ -160,7 +197,7 @@
                     <p>Report a Product</p>
                 </a>
             </div>
-            <div class="col-3 text-left foot-links">
+            <div class="col-md-3 text-left foot-links">
                 <h4 class="text-white">Policy</h4>
                 <a href="">
                     <p>Return Policy</p>
@@ -172,7 +209,7 @@
                     <p>Privacy Policy</p>
                 </a>
             </div>
-            <div class="col-3 text-left foot-links">
+            <div class="col-md-3 text-left foot-links">
                 <h4 class="text-white">About Web-mart</h4>
                 <a href="">
                     <p>About Us</p>
@@ -181,7 +218,7 @@
                     <p>Contact Us</p>
                 </a>
             </div>
-            <div class="col-3 text-left foot-links">
+            <div class="col-md-3 text-left foot-links">
                 <h4 class="text-white">Buying on WEB-MART</h4>
                 <a href="">
                     <p>How to Order</p>
@@ -200,17 +237,22 @@
                 </a>
             </div>
         </div>
-        <div class="container text-center text-white">
-            <span href="" class=""><a class="fa fa-toggle-off  h5 mr-1 text-white" style="text-decoration: none;"
-                    href="#" id="toggleTim"></a></span><span class="font-weight-bold">Switch to
+        <!-- <div class="container text-center text-white">
+            <span href="" class=""><a class="fa fa-toggle-off  h5 mr-1 text-white d-none" style="text-decoration: none;"
+                     id="toggleTim" ></a></span><span class="font-weight-bold">Switch to
                 Night</span>
+        </div> -->
+        <div class="container text-center text-white">
+            <span href="" class=""><a class="btn btn-dark border rounded-circle p-2 mr-1 " style="text-decoration: none;"
+                     id="toggleTim" ></a></span><span class="font-weight-bold">Toggle
+                Night Mode</span>
         </div>
 
     </footer>
 
 
 
-    <script src="main.js"></script>
+    <script src="/main.js"></script>
 </body>
 
 </html>
