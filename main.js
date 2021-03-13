@@ -2,7 +2,7 @@
     let cartValue = $("#cartUpdate").html();
     let cartItem = [];
     let i = 0;
-    let fromLocalStorage;
+    // let fromLocalStorage;
     if (localStorage.getItem('cartItems')) {
         cartItem = JSON.parse(localStorage.getItem('cartItems'));
     }
