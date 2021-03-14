@@ -259,7 +259,7 @@
                     cartNum = localStorage.getItem('cartCount');
                     localStorage.removeItem('cartCount')
                     cartNum--;
-                    document.getElementById("cartVal").innerHTML = `${cartNum} ITEMS`; 
+                    document.getElementById("cartVal").innerHTML = `${cartNum} ITEM(S)`; 
                     localStorage.setItem("cartCount", cartNum);
                     $("#cartUpdate").html(cartNum);
                     console.log(cart);
