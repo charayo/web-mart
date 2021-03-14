@@ -144,4 +144,8 @@
      height: 200px;
      margin: auto;
    }
+   .banner-sm{
+     width: 500px !important;
+     height: 200px !important; 
+   }
  }
