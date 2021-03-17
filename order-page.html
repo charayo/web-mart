@@ -13,9 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
         integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
-        integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
-        crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -69,7 +66,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Sell on
+                            <a class="nav-link disabled" href="index.html" tabindex="-1" aria-disabled="true">Sell on
                                 WEB-MART</a>
                         </li>
                     </ul>
@@ -78,8 +75,10 @@
                         <button class="btn btn-outline-light" type="submit">Search</button>
                     </form>
                 </div>
-                <div><a href="cart.html"><i class="material-icons text-white ml-1" aria-hidden="true">shopping_cart </i></a><sup
-                    id="cartUpdate" class="badge badge-light badge-pill  ">0</sup></div>
+                <div><a href="#"><i class="material-icons text-white ml-1" aria-hidden="true"
+                            id="cartIcon">shopping_cart </i></a><sup id="cartUpdate"
+                        class="badge badge-light badge-pill  ">0</sup></div>
+
 
             </div>
         </nav>
@@ -94,7 +93,7 @@
                     <a class="nav-link" href="women.html">Women</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Men</a>
+                    <a class="nav-link" href="#">Men</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Electronics</a>
@@ -111,53 +110,19 @@
             </ul>
         </nav>
     </header>
-    <div class="nav" id="path-link">
-        <span class="mr-3"><a class="text-black path-link" href="index.html">Home</a><span class="ml-1">>></span></span>
-        <span class="mr-3"> <a class="text-black path-link" href="">Men</a><span class="ml-1 myIcon">>></span></span>
-        <span class="mr-3"> <a class="text-black path-link" href="">Shoes</a><span class="ml-1 myIcon">>></span></span>
-        <span class="mr-3"> <a class="text-black path-link" href="">Slides</a><span class="ml-1 myIcon">>></span></span>
-        <span class="text-grey">Nike SLIDES BENASSI JDI 343880-403</span>
-    </div>
-    <div class="pt-4 mb-2 pb-3 card w-100 container">
-        <div class="row">
-            <div class="col-4 text-center bordker" id="imageDiv">
-                <img id="imageId" class="w-75 mt-4" src="images/bennassi.jpg" alt="Nike-slides">
-            </div>
-            <div class="col-8">
-                <h4 id="itemName">Nike SLIDES BENASSI JDI 343880-403</h4>
-                <span class="d-block">Brand: Nike</span>
-                <span><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i
-                        class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i
-                        class="material-icons text-grey">star</i></span><span class="d-block">(4 ratings)</span>
-                <hr>
-                <h1 id="itemPrice">₦9,999</h1>
-                <span><del>₦17,000</del></span><span class="bg-warning ml-1">-42%</span>
-                <hr>
-                <span>SELECT VARIATION</span>
-                <div class="mt-2">
-                    <button class="btn btn-default border">UK 10</button>
-                    <button class="btn btn-default border">UK 11</button>
-                    <button class="btn btn-default border">UK 12</button>
-                    <button class="btn btn-default border">UK 15</button>
-                </div>
-                <div class="text-cente">
-                    <input type="button" value="ADD TO CART" id="addToCart" class="btn mybg mt-2 form-control text-white ">
-                </div>
-            </div>
+    <div>
+        <h3 class="text-center">YOUR ORDER - <span class="d-none" id="orderedVal"></span> to be delivered</h3>
+        <hr>
+        <div id="orderDiv" class="d-none">
+
         </div>
-    </div>
-    <div class="card container w-100 mb-4">
-        <h4>Product details</h4>
-        <p class="">Slide into comfort in the lightweight and sporty Nike Benassi JDI Slide. It features the Nike logo
-            on the foot strap, which is lined in super soft fabric. The foam midsole brings that beach feeling to your
-            feet and adds spring to your kicked-back style</p>
     </div>
 
 
     <footer class="container-fluid bg-dark">
         <div class="row bg-black pt-3 pb-2">
             <div class="col-md-3">
-                <a class="navbar-brakkknd mytxt font-weight-bolder h2 logotxt" href="index.html">WEB-MART<i
+                <a class="navbar-brakkknd mytxt font-weight-bolder h2 logotxt" href="#">WEB-MART<i
                         class="material-icons text-white ml-1" aria-hidden="true">shopping_cart</i></a>
             </div>
             <div class="col-md-7">
@@ -240,21 +205,48 @@
                 </a>
             </div>
         </div>
-        <!-- <div class="container text-center text-white">
-            <span href="" class=""><a class="fa fa-toggle-off  h5 mr-1 text-white d-none" style="text-decoration: none;"
-                     id="toggleTim" ></a></span><span class="font-weight-bold">Switch to
-                Night</span>
-        </div> -->
         <div class="container text-center text-white">
-            <span href="" class=""><a class="btn btn-dark border rounded-circle p-2 mr-1 " style="text-decoration: none;"
-                     id="toggleTim" ></a></span><span class="font-weight-bold">Toggle
+            <span href="" class=""><a class="btn btn-dark border rounded-circle p-2 mr-1 "
+                    style="text-decoration: none;" id="toggleTim"></a></span><span class="font-weight-bold">Toggle
                 Night Mode</span>
         </div>
 
     </footer>
 
-
-
+    <script>
+        let orderVal;
+        if(localStorage.getItem('orderMade')){
+            $('#orderedVal').removeClass('d-none');
+            $('#orderDiv').removeClass('d-none');
+        }
+        if (localStorage.getItem('orderedCount')) {
+            orderVal = localStorage.getItem('orderedCount');
+        }
+        if (localStorage.getItem('orderedItems')) {
+            cart = JSON.parse(localStorage.getItem('orderedItems'));
+            document.getElementById("orderedVal").innerHTML = `${orderVal} ITEMS`;
+            for (let index = 0; index < cart.length; index++) {
+                document.getElementById("orderDiv").innerHTML += (`
+                    <div class="container card mt-2 mb-3 shadow-lg w-50" id="cartCard${index}">
+                        <div class="">
+                            <div class="row mb-2 text-center">
+                                <div class="col-md-4 text-cen" id="imageTarget">
+                                    <img id="imageId" class="w-75 mt-4" src="${cart[index].itemImgSrc}" alt="product-image">
+                                </div>
+                                <div class="col-md-8" id="descrTarget">
+                                    <div class="pt-4">
+                                        <h4 class="">${cart[index].itemName}</h4>
+                                        <p class="">${cart[index].itemPrice}</p>
+                                        <hr>
+                                    </div>                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `)
+            }
+        }
+    </script>
     <script src="main.js"></script>
 </body>
 

@@ -59,10 +59,12 @@
                                 Login
                             </a>
                             <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" id="userTarg">
-                                <li><a class="dropdown-item"><input class="btn mybg text-white" type="button"
+                                <li id="indexLogin"><a class="dropdown-item"><input class="btn mybg text-white" type="button"
                                             value="LOGIN" data-toggle="modal" data-target="#myModal"></a></li>
+                                <li id="signOut" class="d-none"><a class=""><input class="btn mybg text-white" type="button"
+                                            value="Sign out" id="signOutBtn"></a></li>
                                 <hr class="dropdown-divider">
-                                <li><a class="dropdown-item" href="#"><input class="btn btn-dark" type="button"
+                                <li id="indexCrtAcc"><a class="dropdown-item" href="#"><input class="btn btn-dark" type="button"
                                             value="CREATE AN ACCOUNT" id="crtAccBtn"></a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -108,7 +110,7 @@
                     <a class="nav-link" href="#">Health & Beauty</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Groceries</a>
+                    <a class="nav-link" href="order-page.html">My Order</a>
                 </li>
             </ul>
         </nav>
@@ -178,13 +180,14 @@
 
     </div>
     <hr>
+    <!-- Flash Sales Section -->
     <div class="" id="flash-sales">
         <div class="text-center">
             <h2 class="text-danger">Flash Sales!</h2>
         </div>
-        <div class="row mt-3 container mx-auto mb-3 text-center" >
+        <div class="row mt-3 container mx-auto mb-3 text-center">
             <div class="col-md-3 card prd-card shadow-lg ">
-                <img src="images/maroon-bag.jpg" class="mt-1" alt="maroon-bag">
+                <a href="maroon-leather-bag.html"><img src="images/maroon-bag.jpg" class="mt-1" alt="maroon-bag"></a>
                 <div class="card-body">
                     <h4 class="card-title">Maroon Leather</h4>
                     <p class="card-text text-mute">₦34,000</p>
@@ -193,7 +196,7 @@
                 </div>
             </div>
             <div class="col-md-3 card prd-card shadow-lg">
-                <img src="images/smart-watch.jpg" class="mt-1" alt="watch-black">
+                <a href="smart-watch.html"><img src="images/smart-watch.jpg" class="mt-1" alt="watch-black"></a>
                 <div class="card-body">
                     <h4 class="card-title">Black Smart Watch</h4>
                     <p class="card-text text-mute">₦10,000</p>
@@ -202,7 +205,7 @@
                 </div>
             </div>
             <div class="col-md-3 card prd-card shadow-lg">
-                <img src="images/bennassi.jpg" class="mt-1" alt="Nike-slides">
+                <a href="nike-benassi.html"><img src="images/bennassi.jpg" class="mt-1" alt="Nike-slides"></a>
                 <div class="card-body">
                     <h4 class="card-title">Benassi Nike Slide</h4>
                     <p class="card-text text-mute">₦17,000</p>
@@ -211,7 +214,7 @@
                 </div>
             </div>
             <div class="col-md-3 card prd-card shadow-lg">
-                <img src="images/ring.jpg" class="mt-1" alt="ring">
+                <a href="diamond-ring.html"><img src="images/ring.jpg" class="mt-1" alt="ring"></a>
                 <div class="card-body">
                     <h4 class="card-title">Diamond Ring</h4>
                     <p class="card-text text-mute">₦100,000</p>
@@ -221,7 +224,8 @@
             </div>
         </div>
         <div class="container text-center">
-            <a href="flash-sales.html" class="btn text-danger  font-weight-bold">View more <i class="fas fa-angle-double-right"></i></a>
+            <a href="flash-sales.html" class="btn text-danger  font-weight-bold">View more <i
+                    class="fas fa-angle-double-right"></i></a>
         </div>
     </div>
     <hr>
@@ -234,18 +238,18 @@
             <div class="col-md-6" style="padding: 5px;">
                 <div class="row">
                     <div class="col-8  float-right" style="padding: 0;">
-                        <a href="women.html"><img class="w-100" src="images/front-women-clothing.jpg"  alt=""></a>
+                        <a href="women.html"><img class="w-100" src="images/front-women-clothing.jpg" alt=""></a>
                     </div>
                     <div class="col-4 float-left" style="padding: 0;">
                         <a href=""><img class="w-100" src="images/front-women-shoes.jpg" alt=""></a>
-                        <a href="bags-category.html"><img class="w-100" src="images/front-women-bags.jpg" alt=""></a>   
+                        <a href="bags-category.html"><img class="w-100" src="images/front-women-bags.jpg" alt=""></a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6" style="padding: 5px;">
                 <div class="row">
                     <div class="col-8  float-right" style="padding: 0;">
-                        <a href=""><img class="w-100" src="images/front-men-clothing.jpg" alt=""></a>                        
+                        <a href=""><img class="w-100" src="images/front-men-clothing.jpg" alt=""></a>
                     </div>
                     <div class="col-4 float-left" style="padding: 0;">
                         <a href=""><img class="w-100" src="images/front-men-shoes.jpg" alt=""></a>
@@ -287,7 +291,7 @@
         </div>
         <div class="row mt-3 container mx-auto mb-3 text-center">
             <div class="col-md-3 card prd-card shadow-lg">
-                <img src="images/bag2.jpg" class="mt-1" alt="glossy bag">
+                <a href="bag-2.html"><img src="images/bag2.jpg" class="mt-1" alt="glossy bag"></a>
                 <div class="card-body">
                     <h4 class="card-title">Glossy Strap Bag</h4>
                     <p class="card-text text-mute">₦14,000</p>
@@ -296,25 +300,25 @@
                 </div>
             </div>
             <div class="col-md-3 card prd-card shadow-lg">
-                <img src="images/beach-comfort-slides.jpg" class="mt-1" alt="watch-black">
+                <a href="beach-comfort.html"><img src="images/beach-comfort-slides.jpg" class="mt-1" alt="watch-black"></a>
                 <div class="card-body">
                     <h4 class="card-title">Beach Comfort</h4>
                     <p class="card-text text-mute">₦10,000</p>
                     <p class="card-text text-danger">₦3,000</p>
-                    <a href="#" class="btn btn-danger">Check</a>
+                    <a href="beach-comfort.html" class="btn btn-danger">Check</a>
                 </div>
             </div>
             <div class="col-md-3 card prd-card shadow-lg">
-                <img src="images/mans-shirt.jpg" class="mt-1" alt="man's shirt">
+                <a href="mens-shirt.html"><img src="images/mans-shirt.jpg" class="mt-1" alt="man's shirt"></a>
                 <div class="card-body">
                     <h4 class="card-title">Men's Shirt</h4>
                     <p class="card-text text-mute">#8,000</p>
                     <p class="card-text text-danger">#3,999</p>
-                    <a href="#" class="btn btn-danger">Check</a>
+                    <a href="mens-shirt.html" class="btn btn-danger">Check</a>
                 </div>
             </div>
             <div class="col-md-3 card prd-card shadow-lg">
-                <img src="images/bags3.jpg" class="mt-1" alt="ring">
+                <a href="multicolor-bags.html"><img src="images/bags3.jpg" class="mt-1" alt="ring"></a>
                 <div class="card-body">
                     <h4 class="card-title">Bags</h4>
                     <p class="card-text text-mute">#32,000</p>

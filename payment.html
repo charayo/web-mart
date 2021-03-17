@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="w-100 p-3">
+        <div class="alert alert-success alert-dismissible d-none" id="alert">
+            <a href="#" class="close" data-dismiss='alert' aria-label="close">&times;</a>
+            <strong>Payment Approved</strong> You will now be redirected back to WEB-MART in <strong
+                id="countDwn"></strong><a href="#" class="alert-link"> or click here to go to your order page</a>
+        </div>
+        <div class="card mx-auto shadow-lg m-5 w-100">
+            <div class="card-header bg-dark p-2">
+                <div class="float-left">
+                    <a class="mytxt font-weight-bolder h4 logotxt" href="index.html">WEB-MART</a>
+                </div>
+                <div class="float-right w-50 text-white text-right" id="buyerNameNPrice">
+                    <p>olamidral@gmail.com <br> Pay NGN1,000</p>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="mx-auto text-center mb-3">
+                    <span class="font-weight-bold">Enter your card details here</span>
+                </div>
+                <div class="container mx-auto pb-3">
+                    <input type="text" class="form-control" placeholder="0000 0000 0000 0000" id="snInp">
+                    <input type="text" class="form-control w-25 mt-3 d-inline" placeholder="MM/YY" id="yearInp">
+                    <input type="text" class="form-control w-25 mt-3 d-inline" placeholder="CVV" id="cvvInp">
+                    <button class="btn mybg d-block mt-3 form-control text-white font-weight-bold" id="payBtn">Pay <span
+                            id=""></span></button>
+                </div>
+            </div>
+            <div class="card-footer bg-dark">
+                <img src="images/visamastercard.jpg" class="w-100" alt="" style="height: 50px !important;">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- <script>
+        (function ($) {
+            $('#payBtn').on('click', () => {
+                // alert('pay');
+                if ($('#snInp').val().length >= 12 && $('#yearInp').val().length >= 4 && $('#cvvInp').val().length == 3) {
+                    let num = 6;
+                    let redirect = () => {
+                        location.href = 'index.html'
+                    }
+                    $('#alert').removeClass('d-none');
+                    setTimeout(redirect, 6000);
+                    let countDwn = () => {
+                        $('#countDwn').html(num);
+                        if (num > 0) {
+                            num--;
+                        }
+                    }
+                    let myTime = setInterval(countDwn, 1000);
+                    if (num == 0) {
+                        clearInterval(myTime);
+                    }
+
+                } else {
+                    alert('please fill properly');
+                }
+            })
+        })(jQuery);
+    </script> -->
+    <script src="main.js"></script>
+</body>
+
+</html>
