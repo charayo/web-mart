@@ -44,13 +44,6 @@
             $("#cartUpdate").html(cartNum);
             console.log(cart);
         })
-        var b = querySelectorAll('.post');
-        var image = element
-
-        let array = [];
-        $('#postImg')
-        let postDetails= {
-            postImage:image,
-        }
+        
     });
 })(jQuery);

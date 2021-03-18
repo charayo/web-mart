@@ -25,7 +25,7 @@
                     <a class="mytxt font-weight-bolder h4 logotxt" href="index.html">WEB-MART</a>
                 </div>
                 <div class="float-right w-50 text-white text-right" id="buyerNameNPrice">
-                    <p>olamidral@gmail.com <br> Pay NGN1,000</p>
+                    <p>olamidral@gmail.com <br> <span class="text-success" id="payAmount"></span></p>
                 </div>
             </div>
             <div class="card-body">
@@ -37,7 +37,7 @@
                     <input type="text" class="form-control w-25 mt-3 d-inline" placeholder="MM/YY" id="yearInp">
                     <input type="text" class="form-control w-25 mt-3 d-inline" placeholder="CVV" id="cvvInp">
                     <button class="btn mybg d-block mt-3 form-control text-white font-weight-bold" id="payBtn">Pay <span
-                            id=""></span></button>
+                            id="payBtnAmount"></span></button>
                 </div>
             </div>
             <div class="card-footer bg-dark">
@@ -49,34 +49,34 @@
     </div>
 
 
-    <!-- <script>
+    <script>
         (function ($) {
-            $('#payBtn').on('click', () => {
-                // alert('pay');
-                if ($('#snInp').val().length >= 12 && $('#yearInp').val().length >= 4 && $('#cvvInp').val().length == 3) {
-                    let num = 6;
-                    let redirect = () => {
-                        location.href = 'index.html'
-                    }
-                    $('#alert').removeClass('d-none');
-                    setTimeout(redirect, 6000);
-                    let countDwn = () => {
-                        $('#countDwn').html(num);
-                        if (num > 0) {
-                            num--;
-                        }
-                    }
-                    let myTime = setInterval(countDwn, 1000);
-                    if (num == 0) {
-                        clearInterval(myTime);
-                    }
-
-                } else {
-                    alert('please fill properly');
-                }
-            })
+            let b;
+            let totalPrice = 0;
+            let {log} = console;
+            let cost;
+            let orderObj = JSON.parse(localStorage.getItem('orderedItems'));
+            log(orderObj);
+            let addComma = (val)=>{
+                b = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            }
+            for (let i = 0; i < orderObj.length; i++) {
+                let price = orderObj[i].itemPrice;
+                // let myPrice = price.slice(1,price.length)
+                myPrice = price.replace(/₦/g,'');
+                myPrice = parseFloat(myPrice.replace(/,/g, ''));
+                // log(myPrice)
+                totalPrice += myPrice;
+                addComma(totalPrice);
+                // log(totalPrice)
+            }
+            log(totalPrice, b)
+            cost = b;
+            $('#payAmount').html(`Pay NGN${cost}`)
+            $('#payBtnAmount').html(`₦${cost}`)
+            log(cost)
         })(jQuery);
-    </script> -->
+    </script>
     <script src="main.js"></script>
 </body>
 
