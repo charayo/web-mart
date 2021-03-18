@@ -2,9 +2,10 @@
     let cartValue = $("#cartUpdate").html();
     let cartItem = [];
     let i = 0;
+    let userDetails;
     if (localStorage.getItem('logged')) {
         if (localStorage.getItem('user')) {
-            let userDetails = JSON.parse(localStorage.getItem('user'));
+            userDetails = JSON.parse(localStorage.getItem('user'));
             $('#navbarDropdown').html(userDetails.userId);
             $('#signOut').removeClass('d-none');
             $('#indexCrtAcc').addClass('d-none');
@@ -12,7 +13,7 @@
 
         }
     }
-    if(localStorage.getItem('user') && !localStorage.getItem('logged')){
+    if (localStorage.getItem('user') && !localStorage.getItem('logged')) {
         $('#myModal').modal('show');
     }
 
@@ -66,9 +67,9 @@
     // $("#formSignupBtn").click(() => {
     //     window.location.href = "index.html";
     // })
-    // $("#crtAccBtn").click(() => {
-    //     window.location.href = "signup.html";
-    // })
+    $("#crtAccBtn").click(() => {
+        window.location.href = "signup.html";
+    })
     //--------------------------
 
     //Adding items into the cart
@@ -99,8 +100,33 @@
 
     //For Login Page
     $('#loginBtn').on('click', () => {
-        let name = $('#userIdInp').val();
-        alert('welcome back! ' + name);
+        if (localStorage.getItem('user')) {
+            let loginCache = JSON.parse(localStorage.getItem('user'));
+            let name = $('#userIdInp').val();
+            let password = $('#passInp').val();
+            let storedName = loginCache.userId;
+            let storedPass = loginCache.userPass;
+            let storedEmail = loginCache.userEmail;
+             name = name.toLowerCase();
+             storedName = storedName.toLowerCase();
+
+
+            if (name == storedName && password == storedPass || name == storedEmail && password == storedPass) {
+                localStorage.setItem('logged',true);
+                alert('welcome back! ' + storedName);
+                $('#myModal').modal('hide');
+                window.location.href = "index.html";
+                userDetails = JSON.parse(localStorage.getItem('user'));
+                $('#navbarDropdown').html(userDetails.userId);
+                $('#signOut').removeClass('d-none');
+                $('#indexCrtAcc').addClass('d-none');
+                $('#indexLogin').addClass('d-none');
+            } else{
+                $('#myModal').effect('shake');
+            }
+
+        }
+
     })
     //------------------------
 
@@ -137,7 +163,7 @@
 
     //For signout button
     $('#signOutBtn').on('click', () => {
-        // localStorage.removeItem('user');
+        localStorage.removeItem('logged');
         window.location.href = "index.html";
         $('#navbarDropdown').html('Login');
         $('#signOut').addClass('d-none');
@@ -164,7 +190,7 @@
             console.log(userDetails);
             localStorage.setItem('user', JSON.stringify(userDetails));
             window.location.href = "index.html";
-            
+
 
         } else {
             $('#signUpForm').effect('shake');

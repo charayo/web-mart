@@ -59,10 +59,12 @@
                                 Login
                             </a>
                             <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" id="userTarg">
-                                <li><a class="dropdown-item"><input class="btn mybg text-white" type="button"
+                                <li id="indexLogin"><a class="dropdown-item"><input class="btn mybg text-white" type="button"
                                             value="LOGIN" data-toggle="modal" data-target="#myModal"></a></li>
+                                <li id="signOut" class="d-none"><a class=""><input class="btn mybg text-white" type="button"
+                                            value="Sign out" id="signOutBtn"></a></li>
                                 <hr class="dropdown-divider">
-                                <li><a class="dropdown-item" href="#"><input class="btn btn-dark" type="button"
+                                <li id="indexCrtAcc"><a class="dropdown-item" href="#"><input class="btn btn-dark" type="button"
                                             value="CREATE AN ACCOUNT" id="crtAccBtn"></a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -108,7 +110,7 @@
                     <a class="nav-link" href="#">Health & Beauty</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Groceries</a>
+                    <a class="nav-link" href="order-page.html" id="orderPageLink">My Order</a>
                 </li>
             </ul>
         </nav>

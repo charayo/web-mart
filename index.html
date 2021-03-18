@@ -110,7 +110,7 @@
                     <a class="nav-link" href="#">Health & Beauty</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="order-page.html">My Order</a>
+                    <a class="nav-link" href="order-page.html" id="orderPageLink">My Order</a>
                 </li>
             </ul>
         </nav>
@@ -132,7 +132,12 @@
                     <input type="text" class="form-control mb-2" placeholder="username/email here" required
                         id="userIdInp">
                     <input type="password" class="form-control mb-2" placeholder="password" required id="passInp">
-                    <input type="button" class="btn mybg text-white mt-1" value="LOGIN" id="loginBtn">
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember" id="remMe">
+                        Remember me <a href="" style="text-decoration: none;"><small> Forgot Password</small></a><a
+                            style="text-decoration: none;" href="signup.html"><small> or sign up</small></a>
+                    </label>
+                    <input type="button" class="btn mybg text-white mt-1 d-block" value="LOGIN" id="loginBtn">
                 </div>
 
                 <!-- Modal footer -->

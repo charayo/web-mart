@@ -56,11 +56,13 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Login
                             </a>
-                            <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#"><input class="btn mybg text-white" type="button"
-                                            value="LOGIN"></a></li>
+                            <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" id="userTarg">
+                                <li id="indexLogin"><a class="dropdown-item"><input class="btn mybg text-white" type="button"
+                                            value="LOGIN" data-toggle="modal" data-target="#myModal"></a></li>
+                                <li id="signOut" class="d-none"><a class=""><input class="btn mybg text-white" type="button"
+                                            value="Sign out" id="signOutBtn"></a></li>
                                 <hr class="dropdown-divider">
-                                <li><a class="dropdown-item" href="#"><input class="btn btn-dark" type="button"
+                                <li id="indexCrtAcc"><a class="dropdown-item" href="#"><input class="btn btn-dark" type="button"
                                             value="CREATE AN ACCOUNT" id="crtAccBtn"></a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -90,10 +92,10 @@
         <nav class="navbar navbar-expand-sm navbar-light mybg  justify-content-center">
             <ul class="navbar-nav font-weight-bolder">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Women</a>
+                    <a class="nav-link" href="women.html">Women</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Men</a>
@@ -108,7 +110,7 @@
                     <a class="nav-link" href="#">Health & Beauty</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Groceries</a>
+                    <a class="nav-link" href="#">Order </a>
                 </li>
             </ul>
         </nav>
@@ -221,56 +223,6 @@
 
     </footer>
 
-    <!-- <script>
-        (function ($) {
-            let cart = [];
-
-            if (localStorage.getItem('cartItems')) {
-                cart = JSON.parse(localStorage.getItem('cartItems'));
-                document.getElementById("cartVal").innerHTML = `${cart.length} ITEMS`;
-                for (let index = 0; index < cart.length; index++) {
-                    document.getElementById("cartJsTarg").innerHTML += (`
-                    <div class="container card mt-2 mb-3 shadow-lg w-50" id="cartCard${index}">
-                        <div class="">
-                            <div class="row mb-2 text-center">
-                                <div class="col-md-4 text-cen" id="imageTarget">
-                                    <img id="imageId" class="w-75 mt-4" src="${cart[index].itemImgSrc}" alt="product-image">
-                                </div>
-                                <div class="col-md-8" id="descrTarget">
-                                    <div class="pt-4">
-                                        <h4 class="">${cart[index].itemName}</h4>
-                                        <p class="">${cart[index].itemPrice}</p>
-                                        <hr>
-                                        <input type="button" value="Remove from Cart" class="btn btn-danger removeFromCart" id="removeFromCart">
-                                    </div>                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `)
-                }
-            }
-            // console.log(cart);
-            let rmvBtn = document.querySelectorAll(".removeFromCart");
-            rmvBtn.forEach((element,index) => {
-                
-                element.addEventListener('click', () => {
-                    console.log(index); 
-                    cart.splice(index,1);
-                    localStorage.setItem("cartItems", JSON.stringify(cart));
-                    $(`#cartCard${index}`).remove();
-                     
-                    cartNum = localStorage.getItem('cartCount');
-                    localStorage.removeItem('cartCount')
-                    cartNum--;
-                    document.getElementById("cartVal").innerHTML = `${cartNum} ITEM(S)`; 
-                    localStorage.setItem("cartCount", cartNum);
-                    $("#cartUpdate").html(cartNum);
-                    console.log(cart);
-                })
-            });
-        })(jQuery);
-    </script> -->
     <script src="main.js"></script>
     <script src="cart.js"></script>
 </body>
