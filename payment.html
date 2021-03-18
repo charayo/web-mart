@@ -11,15 +11,14 @@
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-    <div class="w-100 p-3">
+    <div class="smPayCard  p-3">
         <div class="alert alert-success alert-dismissible d-none" id="alert">
             <a href="#" class="close" data-dismiss='alert' aria-label="close">&times;</a>
             <strong>Payment Approved</strong> You will now be redirected back to WEB-MART in <strong
                 id="countDwn"></strong><a href="#" class="alert-link"> or click here to go to your order page</a>
         </div>
-        <div class="card mx-auto shadow-lg m-5 w-100">
+        <div class="card mx-auto shadow-lg m-5 payCard">
             <div class="card-header bg-dark p-2">
                 <div class="float-left">
                     <a class="mytxt font-weight-bolder h4 logotxt" href="index.html">WEB-MART</a>
@@ -56,25 +55,20 @@
             let {log} = console;
             let cost;
             let orderObj = JSON.parse(localStorage.getItem('orderedItems'));
-            log(orderObj);
             let addComma = (val)=>{
                 b = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             }
             for (let i = 0; i < orderObj.length; i++) {
                 let price = orderObj[i].itemPrice;
-                // let myPrice = price.slice(1,price.length)
+                // let myPrice = price.slice(1,price.length);
                 myPrice = price.replace(/₦/g,'');
                 myPrice = parseFloat(myPrice.replace(/,/g, ''));
-                // log(myPrice)
                 totalPrice += myPrice;
                 addComma(totalPrice);
-                // log(totalPrice)
             }
-            log(totalPrice, b)
             cost = b;
-            $('#payAmount').html(`Pay NGN${cost}`)
-            $('#payBtnAmount').html(`₦${cost}`)
-            log(cost)
+            $('#payAmount').html(`Pay NGN${cost}`);
+            $('#payBtnAmount').html(`₦${cost}`);
         })(jQuery);
     </script>
     <script src="main.js"></script>
