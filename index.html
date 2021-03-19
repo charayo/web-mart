@@ -235,12 +235,12 @@
     </div>
     <hr>
     <!-- categories section -->
-    <div class="container">
-        <div class="text-center">
+    <div class=" m-5" >
+        <div class="text-center" style="padding: 0;">
             <h2 class="text-danger">Categories</h2>
         </div>
-        <div class="row con">
-            <div class="col-md-6" style="padding: 5px;">
+        <div class="row " style="padding: 0;">
+            <div class="col-md-6 " style="padding: 0px;">
                 <div class="row">
                     <div class="col-8  float-right" style="padding: 0;">
                         <a href="women.html"><img class="w-100" src="images/front-women-clothing.jpg" alt=""></a>
@@ -251,7 +251,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6" style="padding: 5px;">
+            <div class="col-md-6 " style="padding: 0px;">
                 <div class="row">
                     <div class="col-8  float-right" style="padding: 0;">
                         <a href=""><img class="w-100" src="images/front-men-clothing.jpg" alt=""></a>
@@ -263,9 +263,9 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6" style="padding: 5px;">
-                <div class="row">
+        <div class="row " style="padding: 0;">
+            <div class="col-md-6" style="padding: 0px;">
+                <div class="row con">
                     <div class="col-8  float-right" style="padding: 0;">
                         <img class="w-100" src="images/front-phones.jpg" alt="">
                     </div>
@@ -275,7 +275,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6" style="padding: 5px;">
+            <div class="col-md-6 " style="padding: 0px;">
                 <div class="row">
                     <div class="col-8  float-right" style="padding: 0;">
                         <img class="w-100" src="images/front-health-skincare.jpg" alt="">
@@ -432,7 +432,11 @@
     </footer>
 
 
-
+<script>
+    if (localStorage.getItem('user') && !localStorage.getItem('logged')) {
+        $('#myModal').modal('show');
+    }
+</script>
     <script src="main.js"></script>
 </body>
 

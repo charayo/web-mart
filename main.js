@@ -13,9 +13,7 @@
 
         }
     }
-    if (localStorage.getItem('user') && !localStorage.getItem('logged')) {
-        $('#myModal').modal('show');
-    }
+    
 
     if (localStorage.getItem('cartItems')) {
         cartItem = JSON.parse(localStorage.getItem('cartItems'));
