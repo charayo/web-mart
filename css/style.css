@@ -149,9 +149,29 @@
      height: 200px !important; 
     }
  }
- @media only screen and (min-width : 800px) {
+ @media only screen and (min-width : 768px) and (max-device-width:1000px) {
    .payCard{
      width: 600px;
-     background-color: red;
+   }
+   .md-prd-card{
+    margin: 0 ;
+    height: 360px;
+    width: 620px;
+   }
+   .md-prd-card img{
+    width: 100%;
+    height: 150px;
+   }
+   .md-prd-card h4{
+     font-size: medium;
+   }
+   .my-socials{
+     margin: 0;
+     padding: 0 !important;
+   }
+   .my-socials i{
+    /* margin-right: 5px; */
+    display: inline;
+    /* float: right; */
    }
  }
