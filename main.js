@@ -3,24 +3,36 @@
     let cartItem = [];
     let i = 0;
     let userDetails;
+    let username = 'user';
     if (localStorage.getItem('logged')) {
-        if (localStorage.getItem('user')) {
-            userDetails = JSON.parse(localStorage.getItem('user'));
-            $('#navbarDropdown').html(userDetails.userId);
-            $('#signOut').removeClass('d-none');
-            $('#indexCrtAcc').addClass('d-none');
-            $('#indexLogin').addClass('d-none');
-
-        }
+        username = localStorage.getItem('presentUser');
+        
     }
-    
+    console.log(`${username}`);
+    if (localStorage.getItem(`${username}`)) {
+        userDetails = JSON.parse(localStorage.getItem(`${username}`));
+        $('#navbarDropdown').html(userDetails.userId);
+        $('#signOut').removeClass('d-none');
+        $('#indexCrtAcc').addClass('d-none');
+        $('#indexLogin').addClass('d-none');
 
-    if (localStorage.getItem('cartItems')) {
-        cartItem = JSON.parse(localStorage.getItem('cartItems'));
     }
-    if (localStorage.getItem('cartCount')) {
+//This Makes individual users to have a peculiar cartIems and cartcount as they have selected 
+    if (localStorage.getItem('logged') && localStorage.getItem(`${username}cartItems`)) {
+        cartItem = JSON.parse(localStorage.getItem(`${username}cartItems`));
+    } else if (!localStorage.getItem('logged') && localStorage.getItem('cartItems')){
+            cartItem = JSON.parse(localStorage.getItem('cartItems'));
+    }
+
+    if (localStorage.getItem('logged') && localStorage.getItem(`${username}cartCount`)) {
+        $("#cartUpdate").html(localStorage.getItem(`${username}cartCount`));
+    } else if (!localStorage.getItem('logged') && localStorage.getItem('cartCount')){
         $("#cartUpdate").html(localStorage.getItem('cartCount'));
     }
+
+
+    
+
     if (!localStorage.getItem('theme')) {
         localStorage.setItem('theme', false)
     } else if (localStorage.getItem('theme') == "true") {
@@ -42,14 +54,14 @@
             $('.path-link').removeClass('text-black');
             $('.path-link').addClass('text-white');
             $('.myIcon').addClass('text-white')
-            localStorage.removeItem('theme')
+            // localStorage.removeItem('theme')
             localStorage.setItem('theme', true)
         } else {
             $('.path-link').removeClass('text-white');
             $('.path-link').addClass('text-black');
             $('.myIcon').removeClass('text-white')
             $('body').removeClass('bg-black');
-            localStorage.removeItem('theme')
+            // localStorage.removeItem('theme');
             localStorage.setItem('theme', false)
         }
     })
@@ -61,7 +73,7 @@
         alert('closed');
         window.location.href = "index.html";
     })
-    //Craeting a user account
+    //Creating a user account
     // $("#formSignupBtn").click(() => {
     //     window.location.href = "index.html";
     // })
@@ -83,46 +95,63 @@
             itemImgSrc: imageSrc
         }
         cartItem.push(item);
-        localStorage.setItem("cartItems", JSON.stringify(cartItem));
-        localStorage.setItem("orderedItems", JSON.stringify(cartItem));
+        if (localStorage.getItem('logged')) {
+            localStorage.setItem(`${username}cartItems`, JSON.stringify(cartItem));
+            localStorage.setItem(`${username}orderedItems`, JSON.stringify(cartItem));
 
-        if (localStorage.getItem('cartCount')) {
-            cartValue = localStorage.getItem('cartCount');
+            if (localStorage.getItem(`${username}cartCount`)) {
+                cartValue = localStorage.getItem(`${username}cartCount`);
+            }
+            cartValue++;
+            $("#cartUpdate").html(cartValue);
+            localStorage.setItem(`${username}cartCount`, cartValue)
+            localStorage.setItem(`${username}orderedItems`, cartValue)
+        } else {
+            localStorage.setItem("cartItems", JSON.stringify(cartItem));
+            localStorage.setItem("orderedItems", JSON.stringify(cartItem));
+
+            if (localStorage.getItem('cartCount')) {
+                cartValue = localStorage.getItem('cartCount');
+            }
+            cartValue++;
+            $("#cartUpdate").html(cartValue);
+            localStorage.setItem("cartCount", cartValue)
+            localStorage.setItem("orderedCount", cartValue)
         }
-        cartValue++;
-        $("#cartUpdate").html(cartValue);
-        localStorage.setItem("cartCount", cartValue)
-        localStorage.setItem("orderedCount", cartValue)
     })
     //-------------------------------
 
     //For Login Page
     $('#loginBtn').on('click', () => {
-        if (localStorage.getItem('user')) {
-            let loginCache = JSON.parse(localStorage.getItem('user'));
-            let name = $('#userIdInp').val();
+        let username = $('#userIdInp').val();
+        username = username.toLowerCase();
+        if (localStorage.getItem(`${username}`)) {
+            let loginCache = JSON.parse(localStorage.getItem(`${username}`));
+            // let name = $('#userIdInp').val();
             let password = $('#passInp').val();
             let storedName = loginCache.userId;
             let storedPass = loginCache.userPass;
             let storedEmail = loginCache.userEmail;
-             name = name.toLowerCase();
-             storedName = storedName.toLowerCase();
+            username = username.toLowerCase();
+            storedName = storedName.toLowerCase();
 
-
-            if (name == storedName && password == storedPass || name == storedEmail && password == storedPass) {
-                localStorage.setItem('logged',true);
+            if (username == storedName && password == storedPass || username == storedEmail && password == storedPass) {
+                localStorage.setItem('logged', true);
+                localStorage.setItem('presentUser', `${username}`);
                 alert('welcome back! ' + storedName);
                 $('#myModal').modal('hide');
                 window.location.href = "index.html";
-                userDetails = JSON.parse(localStorage.getItem('user'));
-                $('#navbarDropdown').html(userDetails.userId);
-                $('#signOut').removeClass('d-none');
-                $('#indexCrtAcc').addClass('d-none');
-                $('#indexLogin').addClass('d-none');
-            } else{
+                // userDetails = JSON.parse(localStorage.getItem(`${username}`));
+                // $('#navbarDropdown').html(userDetails.userId);
+                // $('#signOut').removeClass('d-none');
+                // $('#indexCrtAcc').addClass('d-none');
+                // $('#indexLogin').addClass('d-none');
+            } else {
                 $('#myModal').effect('shake');
             }
 
+        } else {
+            $('#myModal').effect('shake');
         }
 
     })
@@ -131,7 +160,6 @@
 
     // For Payment page
     $('#payBtn').on('click', () => {
-        // alert('pay');
         if ($('#snInp').val().length >= 12 && $('#yearInp').val().length >= 4 && $('#cvvInp').val().length == 3) {
             let num = 10;
             let redirect = () => {
@@ -175,6 +203,7 @@
         let password = $('#userPass').val();
         let email = $('#userEmail').val();
         let username = $('#userId').val();
+        username = username.toLowerCase();
         let passVali = /(?=.*[0-9])(?=.*[-_@])(?=.*[A-Z])[a-zA-Z0-9@-_@]{8,16}$/;
         let test = passVali.test(password);
         let mailVali = /[a-zA-Z0-9]{3,15}[@]{1}[a-zA-Z]{3,10}[.]{1}[a-zA-Z]{2,4}$/
@@ -185,8 +214,8 @@
                 userEmail: email,
                 userId: username,
             }
-            console.log(userDetails);
-            localStorage.setItem('user', JSON.stringify(userDetails));
+            // console.log(userDetails);
+            localStorage.setItem(`${username}`, JSON.stringify(userDetails));
             window.location.href = "index.html";
 
 
