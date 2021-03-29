@@ -152,6 +152,7 @@
                         class="btn btn-default minusBtn border mr-1 mybg ">&minus;</button><span id="itemNum"
                         class="border pt-1 pr-2 pl-2 pb-2 mt-3 rounded font-weight-bold">1</span><button id="plusBtn"
                         class="btn btn-default border ml-1 mybg plusBtn">&plus;</button>
+                    <div class="d-none" name="" id="theCodeName">codename</div>
                 </div>
             </div>
         </div>
@@ -259,18 +260,27 @@
         (function ($) {
             let product;
             if (localStorage.getItem('products')) {
-               product = JSON.parse(localStorage.getItem('products'));
-               $('#slashPrice').html(product.costPrice);
-               $('#itemPrice').html(product.salesPrice);
+                product = JSON.parse(localStorage.getItem('products'));
+                $('#slashPrice').html(product.costPrice);
+                $('#itemPrice').html(product.salesPrice);
                 $('#imageId').attr('src', product.imgUrl);
                 $('#prodPath').html(product.product);
                 $('#itemName').html(product.product);
-                $('#addToCartDiv').attr('name', `${product.product}`)
+                $('#addToCartDiv').attr('name', `${product.product}`);
+                $('#theCodeName').attr('name', `${product.product}`);
+                
             }
-            if (sessionStorage.getItem(`${product.product}`)) {
+            if (localStorage.getItem(`${product.product}`)) {
+                let cartQty = localStorage.getItem(`${product.product}`);
+                $('#itemNum').html(cartQty);
+                $('#addToCartDiv').addClass('d-none');
+                $('#cartCtrl').removeClass('d-none')
+            }  else if(localStorage.getItem(`${username}${product.product}`) && localStorage.getItem('logged')){
+                let cartQty = localStorage.getItem(`${username}${product.product}`);
+                $('#itemNum').html(cartQty);
                 $('#addToCartDiv').addClass('d-none');
                 $('#cartCtrl').removeClass('d-none');
-            }
+            } 
         })(jQuery)
     </script>
 

@@ -262,12 +262,18 @@
 
     <script>
         (function ($) {
-            if (sessionStorage.getItem('maroon')) {
-                let cartQty = sessionStorage.getItem('maroon');
+            let username = localStorage.getItem('presentUser')
+            if (localStorage.getItem('maroon')) {
+                let cartQty = localStorage.getItem('maroon');
                 $('#itemNum').html(cartQty);
                 $('#addToCartDiv').addClass('d-none');
                 $('#cartCtrl').removeClass('d-none');
                 
+            } else if(localStorage.getItem(`${username}maroon`) && localStorage.getItem('logged')){
+                let cartQty = localStorage.getItem(`${username}maroon`);
+                $('#itemNum').html(cartQty);
+                $('#addToCartDiv').addClass('d-none');
+                $('#cartCtrl').removeClass('d-none');
             }
         })(jQuery)
 

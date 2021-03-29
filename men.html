@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="foods">
+        <div class="food1">
+            <h1>Amala</h1>
+            <p>img1....</p>
+            <input class="btn" type="button" value="order">
+        </div>
+        <div class="food2">
+            <h1>Semo</h1>
+            <p>img2....</p>
+            <input class="btn" type="button" value="order">
+        </div>
+        <div class="food3">
+            <h1>Wheat</h1>
+            <p>img3....</p>
+            <input class="btn" type="button" value="order">
+        </div>
+        <div class="food4">
+            <h1>Potato...</h1>
+            <p>img4....</p>
+            <input class="btn" type="button" value="order">
+        </div>
+
+    </div>
+    <script>
+        // document.querySelector('body').addEventListener('click', function(e){
+
+        //     if (e.target.classList.contains('btn')){
+        //         console.log(e.target.previousElementSibling.innerHTML);
+        //         console.log(e.target.previousElementSibling.previousElementSibling.innerHTML);
+        //     }
+        // })
+        let btns = document.querySelectorAll('.btn');
+        btns.forEach(orderNow => {
+            // console.log(orderNow);
+            orderNow.addEventListener('click', function () {
+                console.log(orderNow.previousElementSibling.innerHTML);
+                console.log(orderNow.previousElementSibling.previousElementSibling.innerHTML);
+            })
+        });
+    </script>
+</body>
+
+</html>

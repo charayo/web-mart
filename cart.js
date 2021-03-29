@@ -1,11 +1,16 @@
 (function ($) {
     let cart = [];
-
+    let cartQty;
     let buildCartPg = () => {
         document.getElementById("cartVal").innerHTML = `${cart.length} ITEMS`;
-        
+
         for (let index = 0; index < cart.length; index++) {
-            let cartQty = sessionStorage.getItem(`${cart[index].codeName}`);
+            if (localStorage.getItem('logged')) {
+                cartQty = localStorage.getItem(`${username}${cart[index].codeName}`);
+            } else {
+                cartQty = localStorage.getItem(`${cart[index].codeName}`);
+            }
+
             document.getElementById("cartJsTarg").innerHTML += (`
             <div class="container card mt-2 mb-3 shadow-sm w-50" id="cartCard${index}">
                 <div class="row mb-2 text-center">
@@ -46,23 +51,43 @@
     let rmvBtn = document.querySelectorAll(".removeFromCart");
     rmvBtn.forEach((element, index) => {
         element.addEventListener('click', () => {
+
             let toDel = element.parentElement.getAttribute('name');
-            sessionStorage.removeItem(`${toDel}`);
+            if (localStorage.getItem('logged')) {
+                localStorage.removeItem(`${username}${toDel}`);
+            } else {
+                localStorage.removeItem(`${toDel}`);
+            }
             cart.splice(index, 1);
-            localStorage.setItem("cartItems", JSON.stringify(cart));
-            localStorage.setItem("orderedItems", JSON.stringify(cart));
+            if (localStorage.getItem('logged')) {
+                localStorage.setItem(`${username}cartItems`, JSON.stringify(cart));
+                localStorage.setItem(`${username}orderedItems`, JSON.stringify(cart));
+            } else {
+                localStorage.setItem("cartItems", JSON.stringify(cart));
+                localStorage.setItem("orderedItems", JSON.stringify(cart));
+            }
+
             $(`#cartCard${index}`).remove();
 
             cartNum = localStorage.getItem('cartCount');
-            localStorage.removeItem('cartCount')
-            cartNum--;
-            document.getElementById("cartVal").innerHTML = `${cartNum} ITEM(S)`;
-            localStorage.setItem("cartCount", cartNum);
-            localStorage.setItem("orderedCount", cartNum);
-            $("#cartUpdate").html(cartNum);
-            console.log(cart);
+            if (localStorage.getItem('logged')) {
+                localStorage.removeItem(`${username}cartCount`);
+                cartNum--;
+                document.getElementById("cartVal").innerHTML = `${cartNum} ITEM(S)`;
+                localStorage.setItem("cartCount", cartNum);
+                localStorage.setItem("orderedCount", cartNum);
+                $("#cartUpdate").html(cartNum);
+                window.location.href = 'cart.html';
+            } else {
+                localStorage.removeItem('cartCount');
+                cartNum--;
+                document.getElementById("cartVal").innerHTML = `${cartNum} ITEM(S)`;
+                localStorage.setItem("cartCount", cartNum);
+                localStorage.setItem("orderedCount", cartNum);
+                $("#cartUpdate").html(cartNum);
+                window.location.href = 'cart.html';
+            }
 
-            window.location.href = 'cart.html'
 
         })
 

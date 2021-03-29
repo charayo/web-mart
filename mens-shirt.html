@@ -151,6 +151,7 @@
                         class="btn btn-default minusBtn border mr-1 mybg ">&minus;</button><span id="itemNum"
                         class="border pt-1 pr-2 pl-2 pb-2 mt-3 rounded font-weight-bold">1</span><button id="plusBtn"
                         class="btn btn-default border ml-1 mybg plusBtn">&plus;</button>
+                        <div class="d-none"  name="mens-shirt">codename</div>
                 </div>
             </div>
         </div>
@@ -258,7 +259,14 @@
 
     <script>
         (function ($) {
-            if (sessionStorage.getItem('mens-shirt')) {
+            if (localStorage.getItem('mens-shirt')) {
+                let cartQty = localStorage.getItem('mens-shirt');
+                $('#itemNum').html(cartQty);
+                $('#addToCartDiv').addClass('d-none');
+                $('#cartCtrl').removeClass('d-none')
+            } else if(localStorage.getItem(`${username}mens-shirt`) && localStorage.getItem('logged')){
+                let cartQty = localStorage.getItem(`${username}mens-shirt`);
+                $('#itemNum').html(cartQty);
                 $('#addToCartDiv').addClass('d-none');
                 $('#cartCtrl').removeClass('d-none');
             }

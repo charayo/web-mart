@@ -87,7 +87,6 @@
     $("#addToCart").on("click", () => {
         let clickedName = $("#addToCartDiv").attr('name');
         // alert(clickedName);
-        sessionStorage.setItem(`${clickedName}`, '1')
         i++;
         let itemName = $("#itemName").html();
         let itemPrice = $("#itemPrice").html();
@@ -103,6 +102,7 @@
         }
         cartItem.push(item);
         if (localStorage.getItem('logged')) {
+            localStorage.setItem(`${username}${clickedName}`, '1')
             localStorage.setItem(`${username}cartItems`, JSON.stringify(cartItem));
             localStorage.setItem(`${username}orderedItems`, JSON.stringify(cartItem));
 
@@ -115,6 +115,7 @@
             localStorage.setItem(`${username}orderedCount`, cartValue);
             window.location.href = 'cart.html';
         } else {
+            localStorage.setItem(`${clickedName}`, '1')
             localStorage.setItem("cartItems", JSON.stringify(cartItem));
             localStorage.setItem("orderedItems", JSON.stringify(cartItem));
 
@@ -147,7 +148,7 @@
             if (username == storedName && password == storedPass || username == storedEmail && password == storedPass) {
                 localStorage.setItem('logged', true);
                 localStorage.setItem('presentUser', `${username}`);
-                // alert('welcome back! ' + storedName);
+                alert('welcome back! ' + storedName);
                 $('#myModal').modal('hide');
                 window.location.href = "index.html";
 
@@ -162,10 +163,6 @@
     })
     //------------------------
 
-    // if (localStorage.getItem('currentPrice')) {
-    //     cost = localStorage.getItem('currentPrice');
-    //     $('#totalCost').html(`₦${cost}`);
-    // }
     // For Payment page
     $('#payBtn').on('click', () => {
         if ($('#snInp').val().length >= 12 && $('#yearInp').val().length >= 4 && $('#cvvInp').val().length == 3) {
@@ -203,10 +200,16 @@
         b = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
     let priceReg = (orderObj) => {
+        let quantity;
         for (let i = 0; i < orderObj.length; i++) {
             let price = orderObj[i].itemPrice;
             let codeName = orderObj[i].codeName;
-            let quantity = Number(sessionStorage.getItem(`${codeName}`));
+            if(localStorage.getItem('logged')){
+                quantity = Number(localStorage.getItem(`${username}${codeName}`));
+            } else {
+                quantity = Number(localStorage.getItem(`${codeName}`));
+            }
+            
             // alert(quantity)
             // let myPrice = price.slice(1,price.length);
             myPrice = price.replace(/₦/g, '');
@@ -289,19 +292,32 @@
     //Cart update
     $('body').on('click', (e) => {
         let cartCount = $("#cartUpdate").html();
-        let codeName = e.target.nextElementSibling.getAttribute('name');
+        let codeName;  
         if (e.target.classList.contains('plusBtn')) {
+            codeName = e.target.nextElementSibling.getAttribute('name');
             window.location.href = 'cart.html';
             let a = e.target.previousElementSibling.innerText;
             let minusbtn = e.target.previousElementSibling.previousElementSibling;
             a++;
             e.target.previousElementSibling.innerText = a;
             g = parseFloat(e.target.previousElementSibling.innerText);
-            sessionStorage.setItem(`${codeName}`, g);
+            if(localStorage.getItem('logged')){
+                localStorage.setItem(`${username}${codeName}`, g);
+            } else{
+                localStorage.setItem(`${codeName}`, g);
+            }
+            
             h = parseFloat(cartCount);
             cartCount = 1 + h;
             $("#cartUpdate").html(cartCount);
-            localStorage.setItem('cartCount',cartCount);
+            if(localStorage.getItem('logged')){
+                localStorage.setItem(`${username}cartCount`,cartCount);
+                localStorage.setItem(`${username}orderedCount`,cartCount);
+            } else{
+                localStorage.setItem('cartCount',cartCount);
+                localStorage.setItem('orderedCount',cartCount);
+            }
+            
             minusbtn.removeAttribute('disabled');
             let priceFunc = () => {
                 let k = e.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
@@ -324,7 +340,13 @@
                 h = parseFloat(cartCount);
                 cartCount = h - 1;
                 $("#cartUpdate").html(cartCount);
-                localStorage.setItem('cartCount',cartCount);
+                if(localStorage.getItem('logged')){
+                    localStorage.setItem(`${username}cartCount`,cartCount);
+                } else {
+                    localStorage.setItem('cartCount',cartCount);
+                }
+               
+               
                 //add ordered count
             } else if (a == '1') {
                 e.target.setAttribute('disabled', true);
