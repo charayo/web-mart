@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="smPayCard  p-3">
+    <div class="p-3">
         <div class="alert alert-success alert-dismissible d-none" id="alert">
             <a href="#" class="close" data-dismiss='alert' aria-label="close">&times;</a>
             <strong>Payment Approved</strong> You will now be redirected back to WEB-MART in <strong
@@ -25,7 +25,7 @@
                     <a class="mytxt font-weight-bolder h4 logotxt" href="index.html">WEB-MART</a>
                 </div>
                 <div class="float-right w-50 text-white text-right" id="buyerNameNPrice">
-                    <p id="payerId">User </p> <span class="text-success" id="payAmount" ></span>
+                    <p id="payerId">User </p> <span class="text-success" id="payAmount"></span>
                 </div>
             </div>
             <div class="card-body">
@@ -45,40 +45,60 @@
             </div>
 
         </div>
+        <!-- my login modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content bg-dark card shadow text-white">
 
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Login to proceed!</h4>
+                        <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <input type="text" class="form-control mb-2" placeholder="username here" required
+                            id="userIdInp">
+                        <input type="password" class="form-control mb-2" placeholder="password" required id="passInp">
+                        <label>
+                            <input type="checkbox" checked="checked" name="remember" id="remMe">
+                            Remember me <a href="" style="text-decoration: none;" id="fgtPass"><small> Forgot
+                                    Password</small></a><a style="text-decoration: none;" href="signup.html"><small> or
+                                    sign up</small></a>
+                        </label>
+                        <input type="button" class="btn mybg text-white mt-1 d-block" value="LOGIN" id="loginBtn">
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 
 
     <script>
         (function ($) {
-            let b;
-            let totalPrice = 0;
-            let { log } = console;
-            let cost;
-            if (localStorage.getItem('user')) {
+            if (!localStorage.getItem('logged')) {
+                $('#myModal').modal('show');
+                $('#snInp').on('focus',()=>{
+                    $('#myModal').modal('show');
+                })
+            }
+            if (localStorage.getItem('logged')) {
+                username = localStorage.getItem('presentUser');
+            }
+            
+            let prepPayment = () => {
 
             }
-            let payerId = JSON.parse(localStorage.getItem('user'));
-            log(payerId)
-            $('#payerId').html(payerId.userId)
-            let orderObj = JSON.parse(localStorage.getItem('orderedItems'));
+           
 
-            if (localStorage.getItem('orderedItems')) {
-            }
-            let addComma = (val) => {
-                b = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-            }
-            for (let i = 0; i < orderObj.length; i++) {
-                let price = orderObj[i].itemPrice;
-                // let myPrice = price.slice(1,price.length);
-                myPrice = price.replace(/₦/g, '');
-                myPrice = parseFloat(myPrice.replace(/,/g, ''));
-                totalPrice += myPrice;
-                addComma(totalPrice);
-            }
-            cost = b;
-            $('#payAmount').html(`Pay NGN${cost}`);
-            $('#payBtnAmount').html(`₦${cost}`);
+
         })(jQuery);
     </script>
     <script src="main.js"></script>

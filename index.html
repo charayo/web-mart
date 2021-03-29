@@ -83,7 +83,7 @@
                     </form>
                 </div>
                 <div><a href="cart.html"><i class="material-icons text-white ml-1" aria-hidden="true">shopping_cart
-                        </i></a><sup id="cartUpdate" class="badge badge-light badge-pill  ">0</sup></div>
+                        </i></a><sup id="cartUpdate" class="badge badge-danger badge-pill  ">0</sup></div>
 
             </div>
         </nav>
@@ -134,7 +134,7 @@
                     <input type="password" class="form-control mb-2" placeholder="password" required id="passInp">
                     <label>
                         <input type="checkbox" checked="checked" name="remember" id="remMe">
-                        Remember me <a href="" style="text-decoration: none;"><small> Forgot Password</small></a><a
+                        Remember me <a href="forgot-pass.html" style="text-decoration: none;" id="fgtPass"><small> Forgot Password</small></a><a
                             style="text-decoration: none;" href="signup.html"><small> or sign up</small></a>
                     </label>
                     <input type="button" class="btn mybg text-white mt-1 d-block" value="LOGIN" id="loginBtn">
@@ -433,9 +433,9 @@
 
 
 <script>
-    if (localStorage.getItem('user') && !localStorage.getItem('logged')) {
-        $('#myModal').modal('show');
-    }
+    $('#fgtPass').on('click', ()=>{
+        
+    })
 </script>
     <script src="main.js"></script>
 </body>

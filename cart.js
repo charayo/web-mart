@@ -1,49 +1,70 @@
 (function ($) {
     let cart = [];
 
-    if (localStorage.getItem('cartItems')) {
-        cart = JSON.parse(localStorage.getItem('cartItems'));
+    let buildCartPg = () => {
         document.getElementById("cartVal").innerHTML = `${cart.length} ITEMS`;
+        
         for (let index = 0; index < cart.length; index++) {
+            let cartQty = sessionStorage.getItem(`${cart[index].codeName}`);
             document.getElementById("cartJsTarg").innerHTML += (`
-            <div class="container card mt-2 mb-3 shadow-lg w-50" id="cartCard${index}">
-                <div class="">
-                    <div class="row mb-2 text-center">
-                        <div class="col-md-4 text-cen" id="imageTarget">
-                            <img id="imageId" class="w-75 mt-4" src="${cart[index].itemImgSrc}" alt="product-image">
-                        </div>
-                        <div class="col-md-8" id="descrTarget">
-                            <div class="pt-4">
-                                <h4 class="">${cart[index].itemName}</h4>
-                                <p class="">${cart[index].itemPrice}</p>
-                                <hr>
-                                <input type="button" value="Remove from Cart" class="btn btn-danger removeFromCart" id="removeFromCart">
-                            </div>                                
-                        </div>
+            <div class="container card mt-2 mb-3 shadow-sm w-50" id="cartCard${index}">
+                <div class="row mb-2 text-center">
+                    <div class="col-md-4 text-cen" id="imageTarget">
+                        <img id="imageId" class="w-75 mt-4" src="${cart[index].itemImgSrc}" alt="product-image">
+                    </div>
+                    <div class="col-md-8" id="descrTarget">
+                        <div class="pt-4">
+                            <h4 class="">${cart[index].itemName}</h4>
+                            <p class="">${cart[index].itemPrice}</p>
+                            <hr>
+                            <button id="minusBtn" disabled class="btn btn-default minusBtn border mr-1 mybg">&minus;</button><span id="itemNum" class="border pt-1 pr-2 pl-2 pb-2 mt-3 rounded font-weight-bold">${cartQty}</span><button id="plusBtn" class="btn btn-default border ml-1 mybg plusBtn">&plus;</button>
+                            <div class="w-100 rmvPar" id="rmvPar" name ='${cart[index].codeName}'><input type="button" value="Remove from Cart" class=" mx-auto btn btn-danger removeFromCart form-control d-block mt-1" id="removeFromCart"></div>
+                        </div>                                
                     </div>
                 </div>
             </div>
         `)
         }
     }
-    // console.log(cart);
+
+
+
+
+    if (localStorage.getItem('cartItems')) {
+        cart = JSON.parse(localStorage.getItem('cartItems'));
+        buildCartPg();
+    }
+    if (localStorage.getItem('logged')) {
+        username = localStorage.getItem('presentUser');
+        if (localStorage.getItem(`${username}cartItems`)) {
+            cart = JSON.parse(localStorage.getItem(`${username}cartItems`));
+            buildCartPg();
+        }
+    }
+
+    // Removing item from the cart
     let rmvBtn = document.querySelectorAll(".removeFromCart");
-    rmvBtn.forEach((element,index) => {        
+    rmvBtn.forEach((element, index) => {
         element.addEventListener('click', () => {
-            cart.splice(index,1);
+            let toDel = element.parentElement.getAttribute('name');
+            sessionStorage.removeItem(`${toDel}`);
+            cart.splice(index, 1);
             localStorage.setItem("cartItems", JSON.stringify(cart));
             localStorage.setItem("orderedItems", JSON.stringify(cart));
             $(`#cartCard${index}`).remove();
-             
+
             cartNum = localStorage.getItem('cartCount');
             localStorage.removeItem('cartCount')
             cartNum--;
-            document.getElementById("cartVal").innerHTML = `${cartNum} ITEM(S)`; 
+            document.getElementById("cartVal").innerHTML = `${cartNum} ITEM(S)`;
             localStorage.setItem("cartCount", cartNum);
             localStorage.setItem("orderedCount", cartNum);
             $("#cartUpdate").html(cartNum);
             console.log(cart);
+
+            window.location.href = 'cart.html'
+
         })
-        
+
     });
 })(jQuery);

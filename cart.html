@@ -82,7 +82,7 @@
                 </div>
                 <div><a href="#"><i class="material-icons text-white ml-1" aria-hidden="true"
                             id="cartIcon">shopping_cart </i></a><sup id="cartUpdate"
-                        class="badge badge-light badge-pill  ">0</sup></div>
+                        class="badge badge-danger badge-pill  ">0</sup></div>
 
 
             </div>
@@ -116,11 +116,15 @@
         </nav>
     </header>
     <div id="cartJsTarg">
-        <h3 class="text-center">YOUR ORDER - <span class="" id="cartVal"></span></h3>
+        <h3 class="text-center">YOUR CART - <span class="" id="cartVal"></span></h3>
         <hr>
     </div>
-    <div class="container text-center mt-2 mb-2">
-        <a class="btn mybg text-white" href="payment.html" >Continue to Checkout</a>
+    <div class="container text-center mt-2 mb-2 ">
+        <div class="shadow form-control">
+            <span class="float-left font-weight-bold">Total</span><span id="totalCost" class="float-right font-weight-bold">0.00NGN</span>
+        </div>
+        <br>
+        <a class="btn mybg text-white " href="payment.html" >Continue to Checkout</a>
     </div>
 
 

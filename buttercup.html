@@ -81,7 +81,7 @@
                     </form>
                 </div>
                 <div><a href="cart.html"><i class="material-icons text-white ml-1" aria-hidden="true">shopping_cart </i></a><sup
-                    id="cartUpdate" class="badge badge-light badge-pill  ">0</sup></div>
+                    id="cartUpdate" class="badge badge-danger badge-pill  ">0</sup></div>
 
             </div>
         </nav>
@@ -134,15 +134,15 @@
                 <h1 id="itemPrice">₦9,999</h1>
                 <span><del>₦17,000</del></span><span class="bg-warning ml-1">-42%</span>
                 <hr>
-                <!-- <span>SELECT VARIATION</span> -->
-                <!-- <div class="mt-2">
-                    <button class=" btn btn-default border">Maroon</button>
-                    <button class=" btn btn-default border">Black</button>
-                    <button class=" btn btn-default border">Brown</button>
-                    <button class=" btn btn-default border">Blue</button>
-                </div> -->
-                <div class="text-cente">
-                    <input type="button" id="addToCart" value="ADD TO CART" class="btn mybg mt-2 form-control text-white ">
+                <div class="" id="addToCartDiv" name="buttercup">
+                    <input type="button" value="ADD TO CART" id="addToCart"
+                        class="btn mybg mt-2 form-control text-white ">
+                </div>
+                <div id="cartCtrl" class="d-none mt-2">
+                    <button id="minusBtn" disabled
+                        class="btn btn-default minusBtn border mr-1 mybg ">&minus;</button><span id="itemNum"
+                        class="border pt-1 pr-2 pl-2 pb-2 mt-3 rounded font-weight-bold">1</span><button id="plusBtn"
+                        class="btn btn-default border ml-1 mybg plusBtn">&plus;</button>
                 </div>
             </div>
         </div>
@@ -248,7 +248,15 @@
     </footer>
 
 
+    <script>
+        (function ($) {
+            if (sessionStorage.getItem('buttercup')) {
+                $('#addToCartDiv').addClass('d-none');
+                $('#cartCtrl').removeClass('d-none');
+            }
+        })(jQuery)
 
+    </script>
     <script src="main.js"></script>
 </body>
 

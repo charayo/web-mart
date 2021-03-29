@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."
+        title="Type in a name Search Result Here">
+    <div id="disp">
+        <ul>
+
+        </ul>
+    </div>
+
+    <script>
+        let input;
+        function myFunction() {
+
+            // let products = [
+            //     item1 = {
+            //         name: 'Benassi Nike',
+
+            //     },
+            // ] i may use session storage to store to search input while the resultpage loads; i maytarget products by data-names 
+            let allProducts = ['Benassi Nike', 'samsung A10', 'Diamond Laced Ring', 'Runners Nike', 'Temiloluwa', 'tolu']
+            let keyword, item, i;
+            input = document.getElementById("myInput").value;
+            if (input == "" || input == 'undefined' || input == false) {
+                document.getElementById('disp').innerHTML = "Empty";
+            }
+            keyword = input.toUpperCase();
+            for (i = 0; i < allProducts.length; i++) {
+                item = allProducts[i]
+                if (item.toUpperCase().indexOf(keyword) > -1 && input != "") {
+                    console.log(item)
+                    // document.getElementById('disp').innerHTML = "";  
+                    document.getElementById('disp').innerHTML += `<li>${item}</li>`;
+                }
+
+            }
+        }
+    </script>
+
+    </body>
+
+</html>

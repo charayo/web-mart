@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
         integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
         crossorigin="anonymous"></script>
@@ -16,7 +19,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <style>
-
+    #passwrap{
+        position: relative;
+    }
+#eye{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    /* color: #333; */
+}
 </style>
 <div id="preloader-active">
     <div class="preloader d-flex align-items-center justify-content-center">
@@ -55,8 +66,8 @@
                     required>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" class="form-control" id="userPass"
-                    required>
+                <div id="passwrap"><input type="password" placeholder="Enter Password" name="psw" class="form-control" id="userPass"
+                    required class=""><i class="fa fa-eye-slash text-dark" id="eye"></i></div>
 
                 <!-- <label for="psw-repeat"><b>Repeat Password</b></label>
                 <input type="password" placeholder="Repeat Password" name="psw-repeat" class="form-control " required> -->
@@ -74,6 +85,22 @@
             </div>
         </form>
     </div>
+    <script>
+        (function($){
+            $('#eye').on('click',()=>{
+                if($('#userPass').attr('type')=='password'){
+                    $('#userPass').attr('type', 'text')
+                    $('#eye').removeClass('fa-eye-slash')
+                    $('#eye').addClass('fa-eye')
+                } else{
+                    $('#userPass').attr('type', 'password')
+                    $('#eye').removeClass('fa-eye')
+                    $('#eye').addClass('fa-eye-slash')
+                }
+               
+            })
+        })(jQuery)
+    </script>
     <script src="main.js"></script>
     
 </body>

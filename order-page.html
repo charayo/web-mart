@@ -77,7 +77,7 @@
                 </div>
                 <div><a href="#"><i class="material-icons text-white ml-1" aria-hidden="true"
                             id="cartIcon">shopping_cart </i></a><sup id="cartUpdate"
-                        class="badge badge-light badge-pill  ">0</sup></div>
+                        class="badge badge-danger badge-pill  ">0</sup></div>
 
 
             </div>
@@ -215,15 +215,18 @@
 
     <script>
         let orderVal;
-        if(localStorage.getItem('orderMade')){
+        if (localStorage.getItem('logged')) {
+                username = localStorage.getItem('presentUser');
+            }
+        if(localStorage.getItem(`${username}orderMade`)){
             $('#orderedVal').removeClass('d-none');
             $('#orderDiv').removeClass('d-none');
         }
-        if (localStorage.getItem('orderedCount')) {
-            orderVal = localStorage.getItem('orderedCount');
+        if (localStorage.getItem(`${username}orderedCount`)) {
+            orderVal = localStorage.getItem(`${username}orderedCount`);
         }
-        if (localStorage.getItem('orderedItems')) {
-            cart = JSON.parse(localStorage.getItem('orderedItems'));
+        if (localStorage.getItem(`${username}orderedItems`)) {
+            cart = JSON.parse(localStorage.getItem(`${username}orderedItems`));
             document.getElementById("orderedVal").innerHTML = `${orderVal} ITEMS`;
             for (let index = 0; index < cart.length; index++) {
                 document.getElementById("orderDiv").innerHTML += (`

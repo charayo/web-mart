@@ -4,11 +4,12 @@
     let i = 0;
     let userDetails;
     let username = 'user';
+    let cost;
     if (localStorage.getItem('logged')) {
         username = localStorage.getItem('presentUser');
-        
+
     }
-    console.log(`${username}`);
+    // console.log(`${username}`);
     if (localStorage.getItem(`${username}`)) {
         userDetails = JSON.parse(localStorage.getItem(`${username}`));
         $('#navbarDropdown').html(userDetails.userId);
@@ -17,21 +18,21 @@
         $('#indexLogin').addClass('d-none');
 
     }
-//This Makes individual users to have a peculiar cartIems and cartcount as they have selected 
+    //This Makes individual users to have a peculiar cartIems and cartcount as they have selected 
     if (localStorage.getItem('logged') && localStorage.getItem(`${username}cartItems`)) {
         cartItem = JSON.parse(localStorage.getItem(`${username}cartItems`));
-    } else if (!localStorage.getItem('logged') && localStorage.getItem('cartItems')){
-            cartItem = JSON.parse(localStorage.getItem('cartItems'));
+    } else if (!localStorage.getItem('logged') && localStorage.getItem('cartItems')) {
+        cartItem = JSON.parse(localStorage.getItem('cartItems'));
     }
 
     if (localStorage.getItem('logged') && localStorage.getItem(`${username}cartCount`)) {
         $("#cartUpdate").html(localStorage.getItem(`${username}cartCount`));
-    } else if (!localStorage.getItem('logged') && localStorage.getItem('cartCount')){
+    } else if (!localStorage.getItem('logged') && localStorage.getItem('cartCount')) {
         $("#cartUpdate").html(localStorage.getItem('cartCount'));
     }
 
 
-    
+
 
     if (!localStorage.getItem('theme')) {
         localStorage.setItem('theme', false)
@@ -70,7 +71,7 @@
     //The sign-up page
     $("#formCancelBtn").on("click", () => {
         // window.location.href="index.html";
-        alert('closed');
+        // alert('closed');
         window.location.href = "index.html";
     })
     //Creating a user account
@@ -84,15 +85,21 @@
 
     //Adding items into the cart
     $("#addToCart").on("click", () => {
+        let clickedName = $("#addToCartDiv").attr('name');
+        // alert(clickedName);
+        sessionStorage.setItem(`${clickedName}`, '1')
         i++;
         let itemName = $("#itemName").html();
         let itemPrice = $("#itemPrice").html();
         let imageSrc = $("#imageId").attr('src');
+        let pcs = 1;
 
         let item = {
             itemName: itemName,
             itemPrice: itemPrice,
-            itemImgSrc: imageSrc
+            itemImgSrc: imageSrc,
+            codeName: clickedName,
+            pcs: pcs,
         }
         cartItem.push(item);
         if (localStorage.getItem('logged')) {
@@ -104,8 +111,9 @@
             }
             cartValue++;
             $("#cartUpdate").html(cartValue);
-            localStorage.setItem(`${username}cartCount`, cartValue)
-            localStorage.setItem(`${username}orderedItems`, cartValue)
+            localStorage.setItem(`${username}cartCount`, cartValue);
+            localStorage.setItem(`${username}orderedCount`, cartValue);
+            window.location.href = 'cart.html';
         } else {
             localStorage.setItem("cartItems", JSON.stringify(cartItem));
             localStorage.setItem("orderedItems", JSON.stringify(cartItem));
@@ -115,8 +123,9 @@
             }
             cartValue++;
             $("#cartUpdate").html(cartValue);
-            localStorage.setItem("cartCount", cartValue)
-            localStorage.setItem("orderedCount", cartValue)
+            localStorage.setItem("cartCount", cartValue);
+            localStorage.setItem("orderedCount", cartValue);
+            window.location.href = 'cart.html';
         }
     })
     //-------------------------------
@@ -138,14 +147,10 @@
             if (username == storedName && password == storedPass || username == storedEmail && password == storedPass) {
                 localStorage.setItem('logged', true);
                 localStorage.setItem('presentUser', `${username}`);
-                alert('welcome back! ' + storedName);
+                // alert('welcome back! ' + storedName);
                 $('#myModal').modal('hide');
                 window.location.href = "index.html";
-                // userDetails = JSON.parse(localStorage.getItem(`${username}`));
-                // $('#navbarDropdown').html(userDetails.userId);
-                // $('#signOut').removeClass('d-none');
-                // $('#indexCrtAcc').addClass('d-none');
-                // $('#indexLogin').addClass('d-none');
+
             } else {
                 $('#myModal').effect('shake');
             }
@@ -157,7 +162,10 @@
     })
     //------------------------
 
-
+    // if (localStorage.getItem('currentPrice')) {
+    //     cost = localStorage.getItem('currentPrice');
+    //     $('#totalCost').html(`₦${cost}`);
+    // }
     // For Payment page
     $('#payBtn').on('click', () => {
         if ($('#snInp').val().length >= 12 && $('#yearInp').val().length >= 4 && $('#cvvInp').val().length == 3) {
@@ -165,9 +173,9 @@
             let redirect = () => {
                 location.href = 'index.html'
             }
-            localStorage.removeItem('cartItems')
-            localStorage.removeItem('cartCount')
-            localStorage.setItem('orderMade', true)
+            localStorage.removeItem(`${username}cartItems`)
+            localStorage.removeItem(`${username}cartCount`)
+            localStorage.setItem(`${username}orderMade`, true)
             $('#alert').removeClass('d-none');
             setTimeout(redirect, 10000);
             let countDwn = () => {
@@ -185,6 +193,51 @@
             alert('please fill properly');
         }
     })
+    //cart page
+    let b;
+    let totalPrice = 0;
+    // let totalPrice = localStorage.getItem('currentPrice');
+    let { log } = console;
+    cost = 0;
+    let addComma = (val) => {
+        b = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    let priceReg = (orderObj) => {
+        for (let i = 0; i < orderObj.length; i++) {
+            let price = orderObj[i].itemPrice;
+            let codeName = orderObj[i].codeName;
+            let quantity = Number(sessionStorage.getItem(`${codeName}`));
+            // alert(quantity)
+            // let myPrice = price.slice(1,price.length);
+            myPrice = price.replace(/₦/g, '');
+            myPrice = parseFloat(myPrice.replace(/,/g, ''));
+            totalPrice += myPrice * quantity;
+            addComma(totalPrice);
+            cost = b;
+        }
+
+        $('#payAmount').html(`Pay NGN${cost}`);
+        $('#payBtnAmount').html(`₦${cost}`);
+        $('#totalCost').html(`₦${cost}`);
+        // if (!localStorage.getItem('currentPrice')) {
+        //     $('#totalCost').html(`₦${cost}`);
+        // }
+
+    }
+
+    if (localStorage.getItem(`${username}`)) {
+        let payerId = JSON.parse(localStorage.getItem(`${username}`));
+        $('#payerId').html(payerId.userId)
+        if (localStorage.getItem(`${username}cartItems`)) {
+            let orderObj = JSON.parse(localStorage.getItem(`${username}cartItems`));
+            priceReg(orderObj);
+        }
+    } else if (localStorage.getItem(`cartItems`)) {
+        let orderObj = JSON.parse(localStorage.getItem(`cartItems`));
+        priceReg(orderObj);
+
+    }
+
     //-----------------------------------
 
     //For signout button
@@ -206,7 +259,8 @@
         username = username.toLowerCase();
         let passVali = /(?=.*[0-9])(?=.*[-_@])(?=.*[A-Z])[a-zA-Z0-9@-_@]{8,16}$/;
         let test = passVali.test(password);
-        let mailVali = /[a-zA-Z0-9]{3,15}[@]{1}[a-zA-Z]{3,10}[.]{1}[a-zA-Z]{2,4}$/
+        // console.log(test, password);@""
+        let mailVali = /[a-zA-Z0-9]{3,15}[@]{1}[a-zA-Z]{3,10}[.]{1}[a-zA-Z]{2,4}$/;
         let mailCheck = mailVali.test(email);
         if (test && mailCheck) {
             let userDetails = {
@@ -216,6 +270,10 @@
             }
             // console.log(userDetails);
             localStorage.setItem(`${username}`, JSON.stringify(userDetails));
+            localStorage.setItem('logged', true);
+            localStorage.setItem('presentUser', `${username}`);
+            alert('welcome! ' + username);
+            $('#myModal').modal('hide');
             window.location.href = "index.html";
 
 
@@ -228,7 +286,58 @@
         getUserDetails();
     })
     //---------------------------
-    // $('#prom').on('click', ()=>{
-    //     alert();
-    // })
+    //Cart update
+    $('body').on('click', (e) => {
+        let cartCount = $("#cartUpdate").html();
+        let codeName = e.target.nextElementSibling.getAttribute('name');
+        if (e.target.classList.contains('plusBtn')) {
+            window.location.href = 'cart.html';
+            let a = e.target.previousElementSibling.innerText;
+            let minusbtn = e.target.previousElementSibling.previousElementSibling;
+            a++;
+            e.target.previousElementSibling.innerText = a;
+            g = parseFloat(e.target.previousElementSibling.innerText);
+            sessionStorage.setItem(`${codeName}`, g);
+            h = parseFloat(cartCount);
+            cartCount = 1 + h;
+            $("#cartUpdate").html(cartCount);
+            localStorage.setItem('cartCount',cartCount);
+            minusbtn.removeAttribute('disabled');
+            let priceFunc = () => {
+                let k = e.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+                aPrice = k.replace(/₦/g, '');
+                bPrice = aPrice.replace(/,/g, '');
+                bPrice = parseFloat(bPrice);
+                // totalPrice = (totalPrice * (h+1))-myPrice;
+                totalPrice += bPrice;
+                addComma(totalPrice);
+                cost = b;
+            }
+            priceFunc();
+        } else if (e.target.classList.contains('minusBtn')) {
+            let a = e.target.nextElementSibling.innerText;
+            if (a > 1) {
+                a--;
+                // $("#cartUpdate").innerHTML -= a;
+                e.target.nextElementSibling.innerText = a;
+                g = parseFloat(e.target.nextElementSibling.innerText);
+                h = parseFloat(cartCount);
+                cartCount = h - 1;
+                $("#cartUpdate").html(cartCount);
+                localStorage.setItem('cartCount',cartCount);
+                //add ordered count
+            } else if (a == '1') {
+                e.target.setAttribute('disabled', true);
+            }
+        }
+
+    })
+    //-------------------------------------
+    /*Things to do
+    make the minus work
+    make the minus btn active after plus
+    update all for logged in user.
+    make all pages links active
+    optimize your code
+    */
 })(jQuery);
