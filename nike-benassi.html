@@ -99,7 +99,7 @@
                     <a class="nav-link" href="">Men</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Electronics</a>
+                    <a class="nav-link" href="electronics.html">Electronics</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="phones&tablets.html">Phones & Tablet</a>
@@ -266,6 +266,7 @@
 
     <script>
         (function ($) {
+            let username = localStorage.getItem('presentUser')
             if (localStorage.getItem('benassi')) {
                 let cartQty = localStorage.getItem('benassi');
                 $('#itemNum').html(cartQty);

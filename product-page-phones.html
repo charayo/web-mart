@@ -97,10 +97,10 @@
                     <a class="nav-link" href="women.html">Women</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Men</a>
+                    <a class="nav-link" href="men.html">Men</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Electronics</a>
+                    <a class="nav-link" href="electronics.html">Electronics</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="phones&tablets.html">Phones & Tablet</a>
@@ -258,6 +258,7 @@
     </footer>
     <script>
         (function ($) {
+            let username = localStorage.getItem('presentUser')
             let product;
             if (localStorage.getItem('products')) {
                 product = JSON.parse(localStorage.getItem('products'));

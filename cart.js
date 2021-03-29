@@ -69,7 +69,7 @@
 
             $(`#cartCard${index}`).remove();
 
-            cartNum = localStorage.getItem('cartCount');
+            
             if (localStorage.getItem('logged')) {
                 localStorage.removeItem(`${username}cartCount`);
                 cartNum--;
@@ -79,7 +79,8 @@
                 $("#cartUpdate").html(cartNum);
                 window.location.href = 'cart.html';
             } else {
-                localStorage.removeItem('cartCount');
+                cartNum = localStorage.getItem('cartCount');
+                // localStorage.removeItem('cartCount');
                 cartNum--;
                 document.getElementById("cartVal").innerHTML = `${cartNum} ITEM(S)`;
                 localStorage.setItem("cartCount", cartNum);

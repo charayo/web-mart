@@ -246,6 +246,7 @@
     //For signout button
     $('#signOutBtn').on('click', () => {
         localStorage.removeItem('logged');
+        localStorage.removeItem('presentUser');
         window.location.href = "index.html";
         $('#navbarDropdown').html('Login');
         $('#signOut').addClass('d-none');

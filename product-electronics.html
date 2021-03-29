@@ -56,12 +56,15 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Login
                             </a>
-                            <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#"><input class="btn mybg text-white" type="button"
-                                            value="LOGIN"></a></li>
+                            <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" id="userTarg">
+                                <li id="indexLogin"><a class="dropdown-item"><input class="btn mybg text-white"
+                                            type="button" value="LOGIN" data-toggle="modal" data-target="#myModal"></a>
+                                </li>
+                                <li id="signOut" class="d-none"><a class=""><input class="btn mybg text-white"
+                                            type="button" value="Sign out" id="signOutBtn"></a></li>
                                 <hr class="dropdown-divider">
-                                <li><a class="dropdown-item" href="#"><input class="btn btn-dark" type="button"
-                                            value="CREATE AN ACCOUNT" id="crtAccBtn"></a></li>
+                                <li id="indexCrtAcc"><a class="dropdown-item" href="#"><input class="btn btn-dark"
+                                            type="button" value="CREATE AN ACCOUNT" id="crtAccBtn"></a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -78,7 +81,8 @@
                         <button class="btn btn-outline-light" type="submit">Search</button>
                     </form>
                 </div>
-
+                <div><a href="cart.html"><i class="material-icons text-white ml-1" aria-hidden="true">shopping_cart
+                        </i></a><sup id="cartUpdate" class="badge badge-danger badge-pill  ">0</sup></div>
 
             </div>
         </nav>
@@ -87,10 +91,10 @@
         <nav class="navbar navbar-expand-sm navbar-light mybg  justify-content-center">
             <ul class="navbar-nav font-weight-bolder">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Women</a>
+                    <a class="nav-link" href="women.html">Women</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="men.html">Men</a>
@@ -110,17 +114,62 @@
             </ul>
         </nav>
     </header>
+    <div class="nav" id="path-link">
+        <span class="mr-3"><a class="text-black path-link" href="index.html">Home</a><span
+                class="ml-1 myIcon">>></span></span>
+        <span class="mr-3"><a class="text-black path-link" href="electronics.html">Electronics</a><span
+                class="ml-1 myIcon">>></span></span>
+        <span class="text-grey" id="prodPath"></span>
+    </div>
+    <div class="pt-4 mb-2 pb-3 card w-100 container">
+        <div class="row">
+            <div class="col-4 text-center bordker">
+                <img id="imageId" class="w-75 mt-4 prod-img" src="" alt="">
+            </div>
+            <div class="col-8">
+                <h4 id="itemName"></h4>
+                <span class="d-block" id="productBrand">Brand: </span>
+                <span><i class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i
+                        class="material-icons text-warning">star</i><i class="material-icons text-warning">star</i><i
+                        class="material-icons text-grey">star</i></span><span class="d-block">(4 ratings)</span>
+                <hr>
+                <h1 id="itemPrice"></h1>
+                <span><del id="slashPrice"></del></span><span class="bg-warning ml-1">-42%</span>
+                <hr>
+                <!-- <span>SELECT VARIATION</span> -->
+                <!-- <div class="mt-2">
+                    <button class=" btn btn-default border">Maroon</button>
+                    <button class=" btn btn-default border">Black</button>
+                    <button class=" btn btn-default border">Brown</button>
+                    <button class=" btn btn-default border">Blue</button>
+                </div> -->
+                <div class="" id="addToCartDiv" name="">
+                    <input type="button" value="ADD TO CART" id="addToCart"
+                        class="btn mybg mt-2 form-control text-white ">
+                </div>
+                <div id="cartCtrl" class="d-none mt-2">
+                    <button id="minusBtn" disabled
+                        class="btn btn-default minusBtn border mr-1 mybg ">&minus;</button><span id="itemNum"
+                        class="border pt-1 pr-2 pl-2 pb-2 mt-3 rounded font-weight-bold">1</span><button id="plusBtn"
+                        class="btn btn-default border ml-1 mybg plusBtn">&plus;</button>
+                    <div class="d-none" name="" id="theCodeName">codename</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card container w-100 mb-4">
+        <h4>Product details</h4>
+        <p class="" id="product-details">About product here</p>
+    </div>
 
 
-
-
-    <footer class="fixed-bottom container-fluid bg-dark">
+    <footer class="container-fluid bg-dark">
         <div class="row bg-black pt-3 pb-2">
-            <div class="col-3">
-                <a class="navbar-brakkknd mytxt font-weight-bolder h2 logotxt" href="#" >WEB-MART<i
+            <div class="col-md-3">
+                <a class="navbar-brakkknd mytxt font-weight-bolder h2 logotxt" href="#">WEB-MART<i
                         class="material-icons text-white ml-1" aria-hidden="true">shopping_cart</i></a>
             </div>
-            <div class="col-7">
+            <div class="col-md-7">
                 <h6 class="text-white">New to WEB-MART? </h6>
                 <p class="text-white" style="margin-top: -10px;">Subscribe to our Newsletter</p>
                 <form class="form-inline">
@@ -129,7 +178,7 @@
                 </form>
 
             </div>
-            <div class="col-2">
+            <div class="col-md-2">
                 <h6 class="text-white"> JOIN US ON</h6>
                 <span class="mr-4"><a href="#"><i class="fab fa-facebook-f h4 text-white"></i></a></span>
                 <span class="mr-4"><a href="#"><i class="fab fa-twitter h4 text-white"></i></a></span>
@@ -139,7 +188,7 @@
         </div>
         <hr>
         <div class="row text-center bg-dark  text-white ml-3 mr-3">
-            <div class="col-3 text-left foot-links">
+            <div class="col-md-3 text-left foot-links">
                 <h4 class="text-white">Need Help?</h4>
                 <a href="">
                     <p>Help Center</p>
@@ -160,7 +209,7 @@
                     <p>Report a Product</p>
                 </a>
             </div>
-            <div class="col-3 text-left foot-links">
+            <div class="col-md-3 text-left foot-links">
                 <h4 class="text-white">Policy</h4>
                 <a href="">
                     <p>Return Policy</p>
@@ -172,7 +221,7 @@
                     <p>Privacy Policy</p>
                 </a>
             </div>
-            <div class="col-3 text-left foot-links">
+            <div class="col-md-3 text-left foot-links">
                 <h4 class="text-white">About Web-mart</h4>
                 <a href="">
                     <p>About Us</p>
@@ -181,7 +230,7 @@
                     <p>Contact Us</p>
                 </a>
             </div>
-            <div class="col-3 text-left foot-links">
+            <div class="col-md-3 text-left foot-links">
                 <h4 class="text-white">Buying on WEB-MART</h4>
                 <a href="">
                     <p>How to Order</p>
@@ -201,13 +250,40 @@
             </div>
         </div>
         <div class="container text-center text-white">
-            <span href="" class=""><a class="fa fa-toggle-off  h5 mr-1 text-white" style="text-decoration: none;"
-                    href="#" id="toggleTim"></a></span><span class="font-weight-bold">Switch to
-                Night</span>
+            <span href="" class=""><a class="btn btn-dark border rounded-circle p-2 mr-1 "
+                    style="text-decoration: none;" id="toggleTim"></a></span><span class="font-weight-bold">Toggle
+                Night Mode</span>
         </div>
 
     </footer>
-
+    <script>
+        (function ($) {
+            let username = localStorage.getItem('presentUser')
+            let product;
+            if (localStorage.getItem('products')) {
+                product = JSON.parse(localStorage.getItem('products'));
+                $('#slashPrice').html(product.costPrice);
+                $('#itemPrice').html(product.salesPrice);
+                $('#imageId').attr('src', product.imgUrl);
+                $('#prodPath').html(product.product);
+                $('#itemName').html(product.product);
+                $('#addToCartDiv').attr('name', `${product.product}`);
+                $('#theCodeName').attr('name', `${product.product}`);
+                
+            }
+            if (localStorage.getItem(`${product.product}`)) {
+                let cartQty = localStorage.getItem(`${product.product}`);
+                $('#itemNum').html(cartQty);
+                $('#addToCartDiv').addClass('d-none');
+                $('#cartCtrl').removeClass('d-none')
+            }  else if(localStorage.getItem(`${username}${product.product}`) && localStorage.getItem('logged')){
+                let cartQty = localStorage.getItem(`${username}${product.product}`);
+                $('#itemNum').html(cartQty);
+                $('#addToCartDiv').addClass('d-none');
+                $('#cartCtrl').removeClass('d-none');
+            } 
+        })(jQuery)
+    </script>
 
 
     <script src="main.js"></script>
