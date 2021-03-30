@@ -93,4 +93,10 @@
         })
 
     });
+    let itemNums = document.querySelectorAll('#itemNum');
+    itemNums.forEach(element=>{
+        if(element.innerHTML > '1'){
+            element.previousElementSibling.removeAttribute('disabled');
+        }
+    })
 })(jQuery);

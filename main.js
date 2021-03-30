@@ -319,7 +319,7 @@
                 localStorage.setItem('orderedCount',cartCount);
             }
             
-            minusbtn.removeAttribute('disabled');
+            // minusbtn.removeAttribute('disabled');
             let priceFunc = () => {
                 let k = e.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
                 aPrice = k.replace(/₦/g, '');
@@ -332,19 +332,28 @@
             }
             priceFunc();
         } else if (e.target.classList.contains('minusBtn')) {
+            codeName = e.target.nextElementSibling.nextElementSibling.nextElementSibling.getAttribute('name');
+            window.location.href = 'cart.html';
             let a = e.target.nextElementSibling.innerText;
             if (a > 1) {
                 a--;
                 // $("#cartUpdate").innerHTML -= a;
                 e.target.nextElementSibling.innerText = a;
                 g = parseFloat(e.target.nextElementSibling.innerText);
+                if(localStorage.getItem('logged')){
+                    localStorage.setItem(`${username}${codeName}`, g);
+                } else{
+                    localStorage.setItem(`${codeName}`, g);
+                }
                 h = parseFloat(cartCount);
                 cartCount = h - 1;
                 $("#cartUpdate").html(cartCount);
                 if(localStorage.getItem('logged')){
                     localStorage.setItem(`${username}cartCount`,cartCount);
+                    localStorage.setItem(`${username}orderedCount`,cartCount);
                 } else {
                     localStorage.setItem('cartCount',cartCount);
+                    localStorage.setItem('orderedCount',cartCount)
                 }
                
                
@@ -355,6 +364,7 @@
         }
 
     })
+
     //-------------------------------------
     /*Things to do
     make the minus work
