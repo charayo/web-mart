@@ -155,14 +155,41 @@
             </div>
         </div>
     </div>
+    <style>
+        .a-row {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            /* gap: 10px; */
+            row-gap: 30px;
+        }
+
+        .img-thumbnail {
+            border: none;
+        }
+
+        .card {
+            width: 90% !important;
+        }
+
+        /* mobile screen view */
+        @media only screen and (max-width : 768px) {
+            .a-row {
+                grid-template-columns: auto;
+            }
+
+            .card {
+                width: 100% !important;
+            }
+        }
+    </style>
     <div class="" id="Women">
         <div class="" id="phones">
             <div class="text-center">
                 <h2 class="text-danger">Phones & Tablets</h2>
             </div>
-            <div class="row mt-3 container mx-auto mb-3 text-center md-grid">
-                <div class="col-md-3 md-prd-card card prd-card shadow-lg ">
-                    <a href=""><img src="images/Samsung Galaxy A10 (6.2-Inch, 32GB + 2GB RAM, Red).jpg" class="mt-1 prodImg" alt="Samsung Galaxy A10 (6.2-Inch, 32GB + 2GB RAM, Red)"></a>
+            <div class="a-row container card-deck mx-auto p-5">
+                <div class="card text-center shadow mx-auto ">
+                    <a href=""><img src="images/Samsung Galaxy A10 (6.2-Inch, 32GB + 2GB RAM, Red).jpg" class="mt-1 prodImg w-50" alt="Samsung Galaxy A10 (6.2-Inch, 32GB + 2GB RAM, Red)"></a>
                     <div class="card-body">
                         <h5 class="card-title">Samsung Galaxy A10 (6.2-Inch, 32GB + 2GB RAM, Red)</h5>
                         <p class="card-text text-mute">₦56,000</p>
@@ -170,8 +197,8 @@
                         <a class="btn btn-danger checkBtn">Check</a>
                     </div>
                 </div>
-                <div class="col-md-3 md-prd-card card prd-card shadow-lg">
-                    <a href=""><img src="images/Samsung Galaxy Tab E (9.6-inch, 3G, Black).jpg" class="mt-1 prodImg" alt="Samsung Galaxy Tab E (9.6-inch, 3G, Black)"></a>
+                <div class="card text-center shadow mx-auto">
+                    <a href=""><img src="images/Samsung Galaxy Tab E (9.6-inch, 3G, Black).jpg" class="mt-1 prodImg w-50" alt="Samsung Galaxy Tab E (9.6-inch, 3G, Black)"></a>
                     <div class="card-body">
                         <h5 class="card-title">Samsung Galaxy Tab E (9.6-inch, 3G, Black)</h5>
                         <p class="card-text text-mute">₦60,000</p>
@@ -179,8 +206,8 @@
                         <a href="" class="btn btn-danger checkBtn">Check</a>
                     </div>
                 </div>
-                <div class="col-md-3 md-prd-card card prd-card shadow-lg">
-                    <a href=""><img src="images/Infinix HOT 7 (6.2-inch, 32GB + 2GB RAM, Sandstone Blac.jpg" class="mt-1 prodImg" alt="Infinix HOT 7 (6.2-inch, 32GB + 2GB RAM, Sandstone Blac"></a>
+                <div class="card text-center shadow mx-auto">
+                    <a href=""><img src="images/Infinix HOT 7 (6.2-inch, 32GB + 2GB RAM, Sandstone Blac.jpg" class="mt-1 prodImg w-50" alt="Infinix HOT 7 (6.2-inch, 32GB + 2GB RAM, Sandstone Blac"></a>
                     <div class="card-body">
                         <h5 class="card-title">Infinix HOT 7 (6.2-inch, 32GB + 2GB RAM, Sandstone Black</h5>
                         <p class="card-text text-mute">₦55,000</p>
@@ -188,8 +215,8 @@
                         <a href="" class="btn btn-danger checkBtn">Check</a>
                     </div>
                 </div>
-                <div class="col-md-3 md-prd-card card prd-card shadow-lg">
-                    <a href=""><img src="images/TECNO F1 (5.0-Inch, 8GB + 1GB RAM, Black).jpg" class="mt-1 prodImg" alt="TECNO F1 (5.0-Inch, 8GB + 1GB RAM, Black)"></a>
+                <div class="card text-center shadow mx-auto">
+                    <a href=""><img src="images/TECNO F1 (5.0-Inch, 8GB + 1GB RAM, Black).jpg" class="mt-1 prodImg w-50" alt="TECNO F1 (5.0-Inch, 8GB + 1GB RAM, Black)"></a>
                     <div class="card-body">
                         <h5 class="card-title">TECNO F1 (5.0-Inch, 8GB + 1GB RAM, Black)</h5>
                         <p class="card-text text-mute">₦25,000</p>
@@ -199,9 +226,9 @@
                 </div>
             </div>
             <!-- ---------------------- -->
-            <div class="row mt-3 container mx-auto mb-3 text-center md-grid">
-                <div class="col-md-3 md-prd-card card prd-card shadow-lg ">
-                    <a href=""><img src="images/TECNO Pop 2 Power (5.5-inch, 16GB + 1GB RAM, Black).jpg" class="mt-1 prodImg" alt="TECNO Pop 2 Power (5.5-inch, 16GB + 1GB RAM, Black)"></a>
+            <div class="a-row container card-deck mx-auto p-5">
+                <div class="card text-center shadow mx-auto ">
+                    <a href=""><img src="images/TECNO Pop 2 Power (5.5-inch, 16GB + 1GB RAM, Black).jpg" class="mt-1 prodImg w-50" alt="TECNO Pop 2 Power (5.5-inch, 16GB + 1GB RAM, Black)"></a>
                     <div class="card-body">
                         <h5 class="card-title">TECNO Pop 2 Power (5.5-inch, 16GB + 1GB RAM, Black)</h5>
                         <p class="card-text text-mute">₦34,000</p>
@@ -209,8 +236,8 @@
                         <a class="btn btn-danger checkBtn">Check</a>
                     </div>
                 </div>
-                <div class="col-md-3 md-prd-card card prd-card shadow-lg">
-                    <a href=""><img src="images/samsung1.jpg" class="mt-1 prodImg" alt="Samsung Galaxy A10 (6.2-Inch, 32GB + 2GB RAM, Black)"></a>
+                <div class="card text-center shadow mx-auto">
+                    <a href=""><img src="images/samsung1.jpg" class="mt-1 prodImg w-50" alt="Samsung Galaxy A10 (6.2-Inch, 32GB + 2GB RAM, Black)"></a>
                     <div class="card-body">
                         <h5 class="card-title">Samsung Galaxy A10 (6.2-Inch, 32GB + 2GB RAM, Black)</h5>
                         <p class="card-text text-mute">₦56,000</p>
@@ -218,8 +245,8 @@
                         <a class="btn btn-danger checkBtn">Check</a>
                     </div>
                 </div>
-                <div class="col-md-3 md-prd-card card prd-card shadow-lg">
-                    <a href=""><img src="images/Apple - iPhone 8 Plus 64GB - Space Gray.jpg" class="mt-1 prodImg" alt="Apple - iPhone 8 Plus 64GB - Space Gray"></a>
+                <div class="card text-center shadow mx-auto">
+                    <a href=""><img src="images/Apple - iPhone 8 Plus 64GB - Space Gray.jpg" class="mt-1 prodImg w-50" alt="Apple - iPhone 8 Plus 64GB - Space Gray"></a>
                     <div class="card-body">
                         <h5 class="card-title">Apple - iPhone 8 Plus 64GB - Space Gray</h5>
                         <p class="card-text text-mute">₦245,000</p>
@@ -227,8 +254,8 @@
                         <a href="" class="btn btn-danger checkBtn">Check</a>
                     </div>
                 </div>
-                <div class="col-md-3 md-prd-card card prd-card shadow-lg">
-                    <a href=""><img src="images/nokia.jpg" class="mt-1 prodImg" alt="Nokia 1 (4.5-inch, 8GB + 1GB RAM, Dark Blue)"></a>
+                <div class="card text-center shadow mx-auto">
+                    <a href=""><img src="images/nokia.jpg" class="mt-1 prodImg w-50" alt="Nokia 1 (4.5-inch, 8GB + 1GB RAM, Dark Blue)"></a>
                     <div class="card-body">
                         <h5 class="card-title">Nokia 1 (4.5-inch, 8GB + 1GB RAM, Dark Blue) </h5>
                         <p class="card-text text-mute">₦45,000</p>
